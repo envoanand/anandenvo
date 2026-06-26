@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Anand Environment — Environment • Energy • Sustainability</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ─── TOKENS ─── */
+:root{
+  --bg:#06131f;
+  --bg2:#0a1e2e;
+  --bg3:#0d2538;
+  --surface:#112b3d;
+  --surface2:#1a3a50;
+  --accent:#00e5a0;
+  --accent2:#00b4d8;
+  --accent3:#7c3aed;
+  --warm:#f0a500;
+  --text:#e8f4f0;
+  --muted:#7ea8be;
+  --border:rgba(0,229,160,.13);
+  --ff-display:'Syne',sans-serif;
+  --ff-body:'Inter',sans-serif;
+  --r:16px;
+  --r2:24px;
+  --shadow:0 8px 40px rgba(0,0,0,.5);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--ff-body);overflow-x:hidden;line-height:1.65}
+
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--accent);border-radius:2px}
+
+/* ─── NAV ─── */
+nav{
+  position:fixed;top:0;left:0;width:100%;z-index:1000;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 6%;
+  background:rgba(6,19,31,.85);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--border);
+  transition:padding .3s;
+}
+nav.scrolled{padding:10px 6%}
+.nav-logo{
+  font-family:var(--ff-display);font-size:1.4rem;font-weight:800;
+  display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text)
+}
+.nav-logo span{color:var(--accent)}
+.nav-logo .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite}
+.nav-links{display:flex;gap:8px;align-items:center}
+.nav-links a{
+  color:var(--muted);text-decoration:none;font-size:.88rem;font-weight:500;
+  padding:7px 14px;border-radius:30px;transition:.25s;
+}
+.nav-links a:hover{color:var(--accent);background:rgba(0,229,160,.08)}
+.nav-cta{
+  background:var(--accent);color:#041510!important;border-radius:30px!important;
+  font-weight:700!important;padding:9px 20px!important;
+}
+.nav-cta:hover{background:#00c990!important;transform:scale(1.04)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.hamburger span{width:24px;height:2px;background:var(--text);transition:.3s;border-radius:2px}
+
+/* ─── HERO ─── */
+.hero{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;padding:120px 6% 80px;
+}
+.hero-canvas{position:absolute;inset:0;z-index:0}
+.hero-grid{
+  position:absolute;inset:0;z-index:0;
+  background-image:linear-gradient(rgba(0,229,160,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,229,160,.04) 1px,transparent 1px);
+  background-size:50px 50px;
+  mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 40%,transparent 100%);
+}
+.hero-orb{
+  position:absolute;border-radius:50%;filter:blur(80px);
+  animation:float 8s ease-in-out infinite;
+}
+.hero-orb.o1{width:500px;height:500px;background:radial-gradient(circle,rgba(0,229,160,.18),transparent);top:-100px;left:-100px}
+.hero-orb.o2{width:400px;height:400px;background:radial-gradient(circle,rgba(0,180,216,.15),transparent);bottom:-80px;right:-80px;animation-delay:-4s}
+.hero-orb.o3{width:300px;height:300px;background:radial-gradient(circle,rgba(124,58,237,.12),transparent);top:50%;right:15%;animation-delay:-2s}
+
+.hero-content{position:relative;z-index:1;max-width:900px;text-align:center}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:8px 18px;border-radius:30px;
+  border:1px solid var(--border);background:rgba(0,229,160,.06);
+  font-size:.8rem;font-weight:600;color:var(--accent);
+  margin-bottom:28px;letter-spacing:.05em;text-transform:uppercase;
+}
+.hero-badge .live-dot{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:pulse 1.5s infinite}
+.hero h1{
+  font-family:var(--ff-display);font-size:clamp(2.8rem,7vw,5.5rem);font-weight:800;
+  line-height:1.08;margin-bottom:24px;
+  background:linear-gradient(135deg,#fff 0%,var(--accent) 50%,var(--accent2) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero h1 em{font-style:normal;color:var(--accent);-webkit-text-fill-color:var(--accent)}
+.hero-sub{font-size:1.12rem;color:var(--muted);max-width:640px;margin:0 auto 36px;font-weight:300}
+.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:60px}
+.btn-primary{
+  padding:14px 30px;border-radius:40px;
+  background:var(--accent);color:#041510;font-weight:700;font-size:.95rem;
+  text-decoration:none;transition:.25s;border:none;cursor:pointer;
+  display:inline-flex;align-items:center;gap:8px;
+}
+.btn-primary:hover{background:#00c990;transform:translateY(-2px);box-shadow:0 12px 35px rgba(0,229,160,.35)}
+.btn-secondary{
+  padding:14px 30px;border-radius:40px;
+  background:transparent;color:var(--text);font-weight:600;font-size:.95rem;
+  text-decoration:none;transition:.25s;
+  border:1px solid rgba(255,255,255,.2);
+  display:inline-flex;align-items:center;gap:8px;
+}
+.btn-secondary:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+
+.hero-stats{
+  display:flex;gap:48px;justify-content:center;flex-wrap:wrap;
+  padding-top:40px;border-top:1px solid var(--border);
+}
+.stat-item{text-align:center}
+.stat-num{
+  font-family:var(--ff-display);font-size:2.4rem;font-weight:800;
+  color:var(--accent);display:block;
+}
+.stat-label{font-size:.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.hero-scroll{
+  position:absolute;bottom:30px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  color:var(--muted);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;
+}
+.scroll-line{width:1px;height:40px;background:linear-gradient(var(--accent),transparent);animation:scrolldown 1.8s ease-in-out infinite}
+
+/* ─── SECTION BASE ─── */
+section{padding:100px 6%}
+.section-label{
+  display:inline-block;font-size:.75rem;font-weight:700;
+  color:var(--accent);text-transform:uppercase;letter-spacing:.15em;
+  margin-bottom:14px;
+}
+.section-title{
+  font-family:var(--ff-display);font-size:clamp(2rem,4vw,3rem);font-weight:800;
+  line-height:1.15;margin-bottom:16px;
+}
+.section-desc{font-size:1.05rem;color:var(--muted);max-width:580px;line-height:1.7}
+.section-header{margin-bottom:56px}
+.center{text-align:center}
+.center .section-desc{margin:0 auto}
+
+/* ─── ABOUT ─── */
+#about{background:var(--bg2)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.about-visual{position:relative}
+.about-img-wrap{
+  border-radius:var(--r2);overflow:hidden;
+  background:linear-gradient(135deg,var(--bg3),var(--surface));
+  padding:40px;aspect-ratio:1;
+  display:flex;align-items:center;justify-content:center;
+  border:1px solid var(--border);
+  position:relative;
+}
+.about-ring{
+  width:200px;height:200px;border-radius:50%;
+  border:2px solid rgba(0,229,160,.3);
+  position:absolute;animation:spin 20s linear infinite;
+}
+.about-ring::after{
+  content:'';position:absolute;width:10px;height:10px;
+  background:var(--accent);border-radius:50%;top:-5px;left:50%;transform:translateX(-50%);
+}
+.about-ring2{
+  width:280px;height:280px;border:1px solid rgba(0,180,216,.2);
+  animation:spin 30s linear infinite reverse;
+}
+.about-icon-center{
+  font-size:4rem;position:relative;z-index:1;
+  filter:drop-shadow(0 0 20px rgba(0,229,160,.4));
+}
+.about-badge{
+  position:absolute;bottom:-20px;right:-20px;
+  background:var(--accent);color:#041510;
+  border-radius:var(--r);padding:14px 20px;font-weight:700;font-size:.9rem;
+  box-shadow:var(--shadow);
+}
+.about-badge span{font-size:1.6rem;font-family:var(--ff-display);font-weight:800;display:block}
+.about-text .section-desc{margin-bottom:24px}
+.about-pillars{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:28px}
+.pillar{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r);
+  padding:16px;display:flex;align-items:flex-start;gap:10px;
+}
+.pillar-icon{font-size:1.4rem;flex-shrink:0;margin-top:2px}
+.pillar h4{font-size:.88rem;font-weight:600;color:var(--text);margin-bottom:4px}
+.pillar p{font-size:.78rem;color:var(--muted)}
+
+/* ─── SERVICES TABS ─── */
+#services{background:var(--bg)}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:48px}
+.tab-btn{
+  padding:10px 22px;border-radius:30px;border:1px solid var(--border);
+  background:transparent;color:var(--muted);font-size:.88rem;font-weight:600;
+  cursor:pointer;transition:.25s;font-family:var(--ff-body);
+}
+.tab-btn.active,.tab-btn:hover{background:var(--accent);color:#041510;border-color:var(--accent)}
+.tab-panel{display:none;animation:fadeInUp .4s ease}
+.tab-panel.active{display:block}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
+.service-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r2);
+  padding:28px;transition:.3s;cursor:default;position:relative;overflow:hidden;
+}
+.service-card::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(0,229,160,.05),transparent);
+  opacity:0;transition:.3s;
+}
+.service-card:hover{transform:translateY(-6px);border-color:rgba(0,229,160,.3);box-shadow:0 20px 50px rgba(0,0,0,.4)}
+.service-card:hover::before{opacity:1}
+.svc-icon{font-size:2.2rem;margin-bottom:16px;display:block}
+.svc-title{font-family:var(--ff-display);font-size:1.1rem;font-weight:700;margin-bottom:10px;color:var(--text)}
+.svc-desc{font-size:.85rem;color:var(--muted);line-height:1.6}
+.svc-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.svc-tag{
+  padding:3px 10px;border-radius:20px;font-size:.72rem;font-weight:600;
+  background:rgba(0,229,160,.1);color:var(--accent);border:1px solid rgba(0,229,160,.2);
+}
+
+/* ─── ENERGY ─── */
+#energy{
+  background:var(--bg2);
+  position:relative;overflow:hidden;
+}
+#energy::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 80% at 80% 50%,rgba(0,180,216,.07),transparent);
+}
+.energy-hero{
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;margin-bottom:80px;
+  position:relative;
+}
+.energy-visual{
+  display:grid;grid-template-columns:1fr 1fr;gap:14px;
+}
+.energy-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r2);
+  padding:24px;text-align:center;transition:.3s;
+}
+.energy-card:hover{background:var(--surface2);transform:scale(1.03);border-color:rgba(0,180,216,.3)}
+.energy-card.featured{
+  grid-column:span 2;
+  background:linear-gradient(135deg,var(--bg3),var(--surface));
+  border-color:rgba(0,229,160,.25);
+}
+.energy-icon{font-size:2.4rem;margin-bottom:12px}
+.energy-card h3{font-family:var(--ff-display);font-weight:700;font-size:1rem;margin-bottom:6px}
+.energy-card p{font-size:.8rem;color:var(--muted)}
+.energy-list{list-style:none;margin-top:20px}
+.energy-list li{
+  padding:12px 0;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:12px;font-size:.9rem;color:var(--muted);
+}
+.energy-list li::before{content:'→';color:var(--accent);font-weight:700}
+
+/* ─── INDUSTRIES ─── */
+#industries{background:var(--bg)}
+.industries-marquee{overflow:hidden;position:relative;margin:40px 0}
+.industries-marquee::before,.industries-marquee::after{
+  content:'';position:absolute;top:0;bottom:0;width:120px;z-index:2;
+}
+.industries-marquee::before{left:0;background:linear-gradient(90deg,var(--bg),transparent)}
+.industries-marquee::after{right:0;background:linear-gradient(-90deg,var(--bg),transparent)}
+.marquee-track{display:flex;gap:14px;animation:marquee 30s linear infinite;width:max-content}
+.marquee-track2{animation:marquee2 35s linear infinite;animation-delay:-5s}
+.ind-pill{
+  flex-shrink:0;padding:10px 20px;border-radius:30px;
+  border:1px solid var(--border);background:var(--surface);
+  font-size:.85rem;font-weight:500;color:var(--muted);
+  white-space:nowrap;transition:.3s;
+}
+.ind-pill:hover{border-color:var(--accent);color:var(--accent)}
+.industries-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin-top:20px}
+.ind-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r);
+  padding:16px;text-align:center;transition:.25s;
+}
+.ind-card:hover{border-color:rgba(0,229,160,.3);transform:translateY(-3px)}
+.ind-card .ind-icon{font-size:1.6rem;margin-bottom:8px}
+.ind-card p{font-size:.8rem;color:var(--muted)}
+
+/* ─── PROCESS ─── */
+#process{background:var(--bg2)}
+.process-timeline{position:relative;margin-top:20px}
+.process-timeline::before{
+  content:'';position:absolute;left:50%;top:0;bottom:0;width:1px;
+  background:linear-gradient(var(--bg2),var(--accent),var(--bg2));
+  transform:translateX(-50%);
+}
+.process-step{
+  display:grid;grid-template-columns:1fr auto 1fr;gap:40px;align-items:center;
+  margin-bottom:50px;
+}
+.process-step:nth-child(odd) .step-content{text-align:right;grid-column:1}
+.process-step:nth-child(odd) .step-spacer{grid-column:3}
+.process-step:nth-child(even) .step-content{grid-column:3;text-align:left}
+.process-step:nth-child(even) .step-spacer{grid-column:1}
+.step-dot{
+  width:48px;height:48px;border-radius:50%;
+  background:var(--bg2);border:2px solid var(--accent);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--ff-display);font-weight:800;font-size:.9rem;color:var(--accent);
+  position:relative;z-index:1;flex-shrink:0;
+  box-shadow:0 0 20px rgba(0,229,160,.2);
+}
+.step-content h3{font-family:var(--ff-display);font-weight:700;font-size:1.05rem;margin-bottom:6px}
+.step-content p{font-size:.85rem;color:var(--muted)}
+
+/* ─── SUSTAINABILITY ─── */
+#sustainability{background:var(--bg)}
+.sustain-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:24px}
+.sustain-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r2);
+  padding:32px;position:relative;overflow:hidden;
+}
+.sustain-card::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--accent),var(--accent2));
+  transform:scaleX(0);transform-origin:left;transition:.3s;
+}
+.sustain-card:hover::after{transform:scaleX(1)}
+.sustain-card:hover{border-color:rgba(0,229,160,.25);transform:translateY(-4px)}
+.sustain-icon{font-size:2.5rem;margin-bottom:18px}
+.sustain-card h3{font-family:var(--ff-display);font-size:1.2rem;font-weight:700;margin-bottom:12px}
+.sustain-card p{color:var(--muted);font-size:.9rem;line-height:1.7;margin-bottom:16px}
+.sustain-items{list-style:none}
+.sustain-items li{font-size:.82rem;color:var(--muted);padding:5px 0;padding-left:16px;position:relative}
+.sustain-items li::before{content:'·';position:absolute;left:0;color:var(--accent);font-size:1.2rem;top:2px}
+
+/* ─── WHY US ─── */
+#why{background:var(--bg2)}
+.why-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+.why-item{
+  display:flex;align-items:flex-start;gap:14px;
+  padding:20px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);
+  transition:.25s;
+}
+.why-item:hover{border-color:rgba(0,229,160,.3);background:var(--surface2)}
+.why-check{
+  width:32px;height:32px;border-radius:8px;background:rgba(0,229,160,.12);
+  display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;
+}
+.why-item p{font-size:.88rem;font-weight:500;color:var(--text);line-height:1.4}
+
+/* ─── TECH ─── */
+#tech{background:var(--bg)}
+.tech-grid{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:20px}
+.tech-badge{
+  padding:10px 20px;border-radius:30px;
+  border:1px solid var(--border);background:var(--surface);
+  font-size:.88rem;font-weight:600;color:var(--text);
+  transition:.25s;cursor:default;
+}
+.tech-badge:hover{background:var(--surface2);border-color:var(--accent2);color:var(--accent2);transform:scale(1.05)}
+
+/* ─── CONTACT ─── */
+#contact{background:var(--bg2);position:relative;overflow:hidden}
+#contact::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 50% 60% at 30% 50%,rgba(0,229,160,.06),transparent);
+}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;position:relative}
+.contact-form{display:flex;flex-direction:column;gap:16px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form-group{display:flex;flex-direction:column;gap:7px}
+.form-group label{font-size:.82rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.form-group input,.form-group select,.form-group textarea{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r);
+  padding:12px 16px;color:var(--text);font-family:var(--ff-body);font-size:.92rem;
+  transition:.25s;outline:none;width:100%;
+}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{
+  border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,229,160,.1);
+}
+.form-group textarea{resize:vertical;min-height:130px}
+.form-group select option{background:var(--bg2)}
+.contact-info{display:flex;flex-direction:column;gap:28px}
+.contact-info-title{font-family:var(--ff-display);font-size:1.8rem;font-weight:800;line-height:1.2;margin-bottom:8px}
+.contact-desc{color:var(--muted);line-height:1.7}
+.contact-detail{
+  display:flex;align-items:flex-start;gap:14px;
+  padding:18px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);
+}
+.contact-detail-icon{font-size:1.4rem}
+.contact-detail h4{font-size:.85rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+.contact-detail p{font-size:.92rem;color:var(--text)}
+.submit-btn{
+  padding:15px 32px;border-radius:40px;
+  background:var(--accent);color:#041510;font-weight:700;font-size:.95rem;
+  border:none;cursor:pointer;font-family:var(--ff-body);
+  transition:.25s;display:inline-flex;align-items:center;gap:8px;
+  align-self:flex-start;margin-top:4px;
+}
+.submit-btn:hover{background:#00c990;transform:translateY(-2px);box-shadow:0 12px 35px rgba(0,229,160,.3)}
+
+/* ─── FOOTER ─── */
+footer{background:var(--bg);border-top:1px solid var(--border);padding:60px 6% 30px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px}
+.footer-brand p{color:var(--muted);font-size:.88rem;line-height:1.7;margin-top:14px;max-width:280px}
+.footer-col h4{font-weight:700;font-size:.85rem;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);margin-bottom:18px}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.footer-col ul li a{color:var(--muted);text-decoration:none;font-size:.88rem;transition:.2s}
+.footer-col ul li a:hover{color:var(--accent)}
+.footer-bottom{
+  border-top:1px solid var(--border);padding-top:28px;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:gap;gap:14px;
+  font-size:.82rem;color:var(--muted);
+}
+.footer-badges{display:flex;gap:10px}
+.f-badge{
+  padding:5px 12px;border-radius:20px;border:1px solid var(--border);
+  font-size:.75rem;color:var(--muted);
+}
+
+/* ─── ANIMATIONS ─── */
+@keyframes bg{0%{background-position:0 50%}50%{background-position:100% 50%}100%{background-position:0 50%}}
+@keyframes float{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-25px) scale(1.03)}}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes marquee2{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+@keyframes scrolldown{0%{opacity:1;transform:scaleY(1)}100%{opacity:0;transform:scaleY(0);transform-origin:bottom}}
+@keyframes countUp{from{opacity:0}to{opacity:1}}
+
+/* ─── REVEAL ─── */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+.reveal.revealed{opacity:1;transform:none}
+.reveal-l{opacity:0;transform:translateX(-30px);transition:opacity .7s ease,transform .7s ease}
+.reveal-l.revealed{opacity:1;transform:none}
+.reveal-r{opacity:0;transform:translateX(30px);transition:opacity .7s ease,transform .7s ease}
+.reveal-r.revealed{opacity:1;transform:none}
+
+/* ─── MOBILE NAV ─── */
+.mobile-menu{
+  display:none;position:fixed;inset:0;z-index:999;
+  background:rgba(6,19,31,.98);backdrop-filter:blur(20px);
+  flex-direction:column;align-items:center;justify-content:center;gap:24px;
+}
+.mobile-menu.open{display:flex}
+.mobile-menu a{color:var(--text);text-decoration:none;font-size:1.4rem;font-family:var(--ff-display);font-weight:700}
+.mobile-menu a:hover{color:var(--accent)}
+.mobile-close{position:absolute;top:24px;right:6%;font-size:1.8rem;cursor:pointer;color:var(--muted)}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:900px){
+  .about-grid,.energy-hero,.contact-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .process-timeline::before{display:none}
+  .process-step{grid-template-columns:1fr;text-align:left!important}
+  .process-step .step-dot{display:none}
+  .process-step:nth-child(odd) .step-content,.process-step:nth-child(even) .step-content{grid-column:1;text-align:left}
+  .process-step .step-spacer{display:none}
+  .hero-stats{gap:28px}
+  .nav-links{display:none}
+  .hamburger{display:flex}
+}
+@media(max-width:600px){
+  .footer-grid{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  .about-pillars{grid-template-columns:1fr}
+}
+
+/* ─── PARTICLES ─── */
+.particle{
+  position:absolute;border-radius:50%;pointer-events:none;
+  background:var(--accent);opacity:.15;animation:particle-float linear infinite;
+}
+@keyframes particle-float{
+  0%{transform:translateY(0) scale(1);opacity:.15}
+  100%{transform:translateY(-100vh) scale(0);opacity:0}
+}
+
+/* ─── TOAST ─── */
+.toast{
+  position:fixed;bottom:30px;right:30px;z-index:9999;
+  background:var(--accent);color:#041510;padding:14px 24px;border-radius:var(--r);
+  font-weight:700;font-size:.9rem;box-shadow:var(--shadow);
+  transform:translateY(100px);opacity:0;transition:.3s;
+}
+.toast.show{transform:none;opacity:1}
+
+/* ─── PROGRESS BAR ─── */
+.progress-bar{
+  position:fixed;top:0;left:0;height:2px;
+  background:linear-gradient(90deg,var(--accent),var(--accent2));
+  z-index:9999;transition:width .1s;
+}
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progress"></div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a class="nav-logo" href="#">
+    <span class="dot"></span>
+    Anand <span>Environment</span>
+  </a>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#energy">Energy</a>
+    <a href="#sustainability">Sustainability</a>
+    <a href="#industries">Industries</a>
+    <a href="#process">Process</a>
+    <a href="#contact" class="nav-cta">Get In Touch</a>
+  </div>
+  <div class="hamburger" id="ham" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <span class="mobile-close" onclick="toggleMenu()">✕</span>
+  <a href="#about" onclick="toggleMenu()">About</a>
+  <a href="#services" onclick="toggleMenu()">Services</a>
+  <a href="#energy" onclick="toggleMenu()">Energy</a>
+  <a href="#sustainability" onclick="toggleMenu()">Sustainability</a>
+  <a href="#industries" onclick="toggleMenu()">Industries</a>
+  <a href="#process" onclick="toggleMenu()">Our Process</a>
+  <a href="#contact" onclick="toggleMenu()">Contact</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-grid"></div>
+  <div class="hero-orb o1"></div>
+  <div class="hero-orb o2"></div>
+  <div class="hero-orb o3"></div>
+  <div class="hero-content" id="heroContent">
+    <div class="hero-badge"><span class="live-dot"></span>Reliable · Sustainable · Future Ready</div>
+    <h1>Engineering a Cleaner<br>Greener Tomorrow</h1>
+    <p class="hero-sub">End-to-end environmental consultancy, water engineering, renewable energy, and sustainability solutions for industries and municipalities across India.</p>
+    <div class="hero-btns">
+      <a href="#services" class="btn-primary">⚡ Explore Services</a>
+      <a href="#contact" class="btn-secondary">💬 Talk to an Expert</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item"><span class="stat-num" data-target="250" data-suffix="+">0</span><span class="stat-label">Projects Delivered</span></div>
+      <div class="stat-item"><span class="stat-num" data-target="40" data-suffix="+">0</span><span class="stat-label">Expert Engineers</span></div>
+      <div class="stat-item"><span class="stat-num" data-target="18" data-suffix="+">0</span><span class="stat-label">Service Verticals</span></div>
+      <div class="stat-item"><span class="stat-num" data-target="15" data-suffix="+">0</span><span class="stat-label">Years of Experience</span></div>
+    </div>
+  </div>
+  <div class="hero-scroll">Scroll <div class="scroll-line"></div></div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-visual reveal-l">
+      <div class="about-img-wrap">
+        <div class="about-ring"></div>
+        <div class="about-ring about-ring2"></div>
+        <div class="about-icon-center">🌿</div>
+        <div class="about-badge">
+          <span>2025</span>
+          Established
+        </div>
+      </div>
+    </div>
+    <div class="about-text reveal-r">
+      <span class="section-label">Who We Are</span>
+      <h2 class="section-title">India's Trusted Partner in Environment & Energy</h2>
+      <p class="section-desc">We are not just consultants — we are problem-solvers who understand that environmental challenges don't come with textbook answers. For over 15 years, Anand Environment has helped industries, municipalities, and infrastructure developers navigate complex regulatory landscapes, build cleaner processes, and transition to sustainable energy.</p>
+      <p class="section-desc" style="margin-top:14px">From designing a zero-liquid discharge system for a pharmaceutical plant to helping a municipality achieve CPCB compliance, we bring technical depth and real-world pragmatism to every project.</p>
+      <div class="about-pillars" style="margin-top:28px">
+        <div class="pillar"><div class="pillar-icon">🏗️</div><div><h4>EPC Solutions</h4><p>End-to-end engineering, procurement, and construction</p></div></div>
+        <div class="pillar"><div class="pillar-icon">📋</div><div><h4>Regulatory Expertise</h4><p>CPCB, SPCB, EIA and compliance consulting</p></div></div>
+        <div class="pillar"><div class="pillar-icon">🔬</div><div><h4>Advanced Technologies</h4><p>MBR, ZLD, IoT, SCADA and smart systems</p></div></div>
+        <div class="pillar"><div class="pillar-icon">🔧</div><div><h4>O&M Services</h4><p>Long-term operation and performance optimization</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-header center reveal">
+    <span class="section-label">What We Do</span>
+    <h2 class="section-title">Comprehensive Environmental Services</h2>
+    <p class="section-desc">Every service we offer is built around one principle: sustainable outcomes with engineering excellence.</p>
+  </div>
+  <div class="tabs reveal">
+    <button class="tab-btn active" onclick="showTab('eia')">EIA & Compliance</button>
+    <button class="tab-btn" onclick="showTab('water')">Water Treatment</button>
+    <button class="tab-btn" onclick="showTab('wastewater')">Wastewater</button>
+    <button class="tab-btn" onclick="showTab('monitoring')">Monitoring</button>
+    <button class="tab-btn" onclick="showTab('municipal')">Municipal</button>
+    <button class="tab-btn" onclick="showTab('industrial')">Industrial EPC</button>
+  </div>
+
+  <div class="tab-panel active" id="tab-eia">
+    <div class="services-grid">
+      <div class="service-card"><span class="svc-icon">📄</span><div class="svc-title">Environmental Impact Assessment</div><div class="svc-desc">We prepare comprehensive EIA reports that satisfy MoEFCC requirements while genuinely identifying environmental risks — not just checking boxes.</div><div class="svc-tags"><span class="svc-tag">Baseline Studies</span><span class="svc-tag">EMP</span><span class="svc-tag">Public Hearing</span><span class="svc-tag">EC Support</span></div></div>
+      <div class="service-card"><span class="svc-icon">⚖️</span><div class="svc-title">Regulatory Compliance</div><div class="svc-desc">CPCB and SPCB compliance, consent to establish and operate, hazardous waste authorization, and periodic environmental audits.</div><div class="svc-tags"><span class="svc-tag">CPCB</span><span class="svc-tag">SPCB</span><span class="svc-tag">HWM Rules</span><span class="svc-tag">Audits</span></div></div>
+      <div class="service-card"><span class="svc-icon">🌱</span><div class="svc-title">ESG Compliance</div><div class="svc-desc">We help organizations build ESG frameworks, prepare sustainability disclosures, and align operations with BRSR, GRI, and global reporting standards.</div><div class="svc-tags"><span class="svc-tag">BRSR</span><span class="svc-tag">GRI</span><span class="svc-tag">ISO 14001</span><span class="svc-tag">Reporting</span></div></div>
+      <div class="service-card"><span class="svc-icon">🔍</span><div class="svc-title">Environmental Audit</div><div class="svc-desc">Systematic assessments of operational practices, regulatory adherence, and environmental performance — helping you stay ahead of compliance requirements.</div><div class="svc-tags"><span class="svc-tag">Gap Analysis</span><span class="svc-tag">Action Plans</span><span class="svc-tag">ISO 14001</span></div></div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-water">
+    <div class="services-grid">
+      <div class="service-card"><span class="svc-icon">💧</span><div class="svc-title">Water Treatment Plants (WTP)</div><div class="svc-desc">Design, supply, install, and operate water treatment systems for industrial and municipal applications — ensuring safe, reliable water supply.</div><div class="svc-tags"><span class="svc-tag">RO</span><span class="svc-tag">UF</span><span class="svc-tag">DM Plants</span><span class="svc-tag">Softening</span></div></div>
+      <div class="service-card"><span class="svc-icon">🏭</span><div class="svc-title">Effluent Treatment Plants (ETP)</div><div class="svc-desc">Custom ETP systems for pharmaceutical, chemical, textile, food processing, and heavy industries — designed for maximum efficiency and minimum footprint.</div><div class="svc-tags"><span class="svc-tag">Physio-Chemical</span><span class="svc-tag">Biological</span><span class="svc-tag">Tertiary</span></div></div>
+      <div class="service-card"><span class="svc-icon">♻️</span><div class="svc-title">Zero Liquid Discharge (ZLD)</div><div class="svc-desc">We engineer ZLD systems that recover water from even the most challenging effluent streams, helping industries achieve zero discharge and recover valuable resources.</div><div class="svc-tags"><span class="svc-tag">MEE</span><span class="svc-tag">MVR</span><span class="svc-tag">Crystallizer</span></div></div>
+      <div class="service-card"><span class="svc-icon">🌊</span><div class="svc-title">Water Audits & Management</div><div class="svc-desc">Systematic assessment of water consumption, losses, and reuse opportunities — delivering practical water conservation strategies and smart monitoring systems.</div><div class="svc-tags"><span class="svc-tag">Water Balance</span><span class="svc-tag">Rainwater Harvesting</span><span class="svc-tag">Smart Metering</span></div></div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-wastewater">
+    <div class="services-grid">
+      <div class="service-card"><span class="svc-icon">🏙️</span><div class="svc-title">Sewage Treatment Plants (STP)</div><div class="svc-desc">Municipal and industrial STPs using proven biological treatment technologies — from conventional ASP to advanced MBR systems.</div><div class="svc-tags"><span class="svc-tag">MBR</span><span class="svc-tag">MBBR</span><span class="svc-tag">SBR</span><span class="svc-tag">ASP</span></div></div>
+      <div class="service-card"><span class="svc-icon">🔄</span><div class="svc-title">Wastewater Recycling</div><div class="svc-desc">Tertiary treatment and advanced polishing systems that enable treated water to be reused within industrial processes, reducing freshwater demand.</div><div class="svc-tags"><span class="svc-tag">Tertiary</span><span class="svc-tag">Sand Filtration</span><span class="svc-tag">ACF</span></div></div>
+      <div class="service-card"><span class="svc-icon">🧪</span><div class="svc-title">Membrane Technologies</div><div class="svc-desc">UF, NF, RO membrane systems for high-purity water production and advanced wastewater polishing applications across industries.</div><div class="svc-tags"><span class="svc-tag">UF</span><span class="svc-tag">NF</span><span class="svc-tag">RO</span><span class="svc-tag">Nano Filtration</span></div></div>
+      <div class="service-card"><span class="svc-icon">🌱</span><div class="svc-title">Sludge Management</div><div class="svc-desc">Complete sludge handling solutions including thickening, dewatering, drying, and co-processing — ensuring responsible management of treatment byproducts.</div><div class="svc-tags"><span class="svc-tag">Thickener</span><span class="svc-tag">Filter Press</span><span class="svc-tag">Dryer</span></div></div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-monitoring">
+    <div class="services-grid">
+      <div class="service-card"><span class="svc-icon">🌬️</span><div class="svc-title">Air Quality Monitoring</div><div class="svc-desc">Ambient air quality monitoring, stack emission testing, and dispersion modeling for industrial facilities, townships, and regulatory compliance.</div><div class="svc-tags"><span class="svc-tag">Ambient AQM</span><span class="svc-tag">Stack Emission</span><span class="svc-tag">Dispersion</span></div></div>
+      <div class="service-card"><span class="svc-icon">💦</span><div class="svc-title">Water Quality Monitoring</div><div class="svc-desc">Surface water, groundwater, and effluent monitoring with NABL-accredited laboratory support and real-time IoT sensor networks.</div><div class="svc-tags"><span class="svc-tag">Surface Water</span><span class="svc-tag">Groundwater</span><span class="svc-tag">IoT Sensors</span></div></div>
+      <div class="service-card"><span class="svc-icon">🔊</span><div class="svc-title">Noise & Soil Monitoring</div><div class="svc-desc">Day-night noise level measurement, vibration analysis, soil quality assessment, and contamination mapping for industrial and infrastructure projects.</div><div class="svc-tags"><span class="svc-tag">Noise Mapping</span><span class="svc-tag">Vibration</span><span class="svc-tag">Soil Analysis</span></div></div>
+      <div class="service-card"><span class="svc-icon">📡</span><div class="svc-title">Online Continuous Monitoring</div><div class="svc-desc">OCEMS installation and integration for real-time effluent and emission monitoring, directly connected to CPCB/SPCB servers as per regulatory requirements.</div><div class="svc-tags"><span class="svc-tag">OCEMS</span><span class="svc-tag">CPCB Connect</span><span class="svc-tag">Real-time</span></div></div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-municipal">
+    <div class="services-grid">
+      <div class="service-card"><span class="svc-icon">🏛️</span><div class="svc-title">Water Supply Infrastructure</div><div class="svc-desc">Complete water supply projects from source to tap — intakes, transmission mains, water treatment plants, distribution networks, and smart monitoring.</div><div class="svc-tags"><span class="svc-tag">Intake Works</span><span class="svc-tag">Transmission</span><span class="svc-tag">Distribution</span></div></div>
+      <div class="service-card"><span class="svc-icon">🕳️</span><div class="svc-title">Sewerage Network</div><div class="svc-desc">Design and execution of underground sewerage systems, pumping stations, and sewage conveyance infrastructure for cities and towns.</div><div class="svc-tags"><span class="svc-tag">Underground Sewerage</span><span class="svc-tag">Pumping Stations</span></div></div>
+      <div class="service-card"><span class="svc-icon">🏙️</span><div class="svc-title">Smart City Projects</div><div class="svc-desc">IoT-enabled smart water distribution, leak detection, SCADA-managed utilities, and integrated city environmental monitoring solutions.</div><div class="svc-tags"><span class="svc-tag">IoT</span><span class="svc-tag">SCADA</span><span class="svc-tag">Smart Water</span></div></div>
+      <div class="service-card"><span class="svc-icon">🗑️</span><div class="svc-title">Solid Waste Management</div><div class="svc-desc">Municipal solid waste processing, faecal sludge treatment plants, and integrated waste-to-energy solutions for urban local bodies.</div><div class="svc-tags"><span class="svc-tag">MSW</span><span class="svc-tag">FSTP</span><span class="svc-tag">Waste to Energy</span></div></div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-industrial">
+    <div class="services-grid">
+      <div class="service-card"><span class="svc-icon">🏗️</span><div class="svc-title">Process & Plant Design</div><div class="svc-desc">From process flow diagrams to detailed engineering drawings — our team handles all aspects of industrial plant design for environmental systems.</div><div class="svc-tags"><span class="svc-tag">PFD</span><span class="svc-tag">P&ID</span><span class="svc-tag">Civil</span><span class="svc-tag">Piping</span></div></div>
+      <div class="service-card"><span class="svc-icon">🔩</span><div class="svc-title">EPC Turnkey Projects</div><div class="svc-desc">Complete engineering, procurement, and construction services — a single accountable partner from project concept through commissioning and handover.</div><div class="svc-tags"><span class="svc-tag">Mechanical</span><span class="svc-tag">Electrical</span><span class="svc-tag">Civil</span><span class="svc-tag">Instrumentation</span></div></div>
+      <div class="service-card"><span class="svc-icon">🛠️</span><div class="svc-title">Operation & Maintenance</div><div class="svc-desc">Annual maintenance contracts, plant performance optimization, spare parts management, and remote monitoring — keeping your systems running at peak efficiency.</div><div class="svc-tags"><span class="svc-tag">AMC</span><span class="svc-tag">Remote Monitoring</span><span class="svc-tag">Performance</span></div></div>
+      <div class="service-card"><span class="svc-icon">⚡</span><div class="svc-title">Automation & SCADA</div><div class="svc-desc">PLC programming, SCADA integration, MCC design, and instrumentation for fully automated environmental treatment and monitoring systems.</div><div class="svc-tags"><span class="svc-tag">PLC</span><span class="svc-tag">SCADA</span><span class="svc-tag">MCC</span><span class="svc-tag">HMI</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ENERGY -->
+<section id="energy">
+  <div class="energy-hero">
+    <div class="reveal-l">
+      <span class="section-label">Energy Solutions</span>
+      <h2 class="section-title">Powering Industries with Clean, Smart Energy</h2>
+      <p class="section-desc">We help industries reduce energy costs, improve efficiency, and transition to renewable power — combining technical expertise with practical knowledge of India's energy landscape.</p>
+      <ul class="energy-list">
+        <li>Solar EPC — rooftop to utility scale</li>
+        <li>Wind energy development and O&M</li>
+        <li>Biogas, biomass and waste-to-energy systems</li>
+        <li>Green hydrogen feasibility and integration</li>
+        <li>Energy audits and efficiency optimization</li>
+        <li>Smart grid, IoT and AI-based energy management</li>
+      </ul>
+      <a href="#contact" class="btn-primary" style="margin-top:28px;display:inline-flex">Get Energy Assessment →</a>
+    </div>
+    <div class="energy-visual reveal-r">
+      <div class="energy-card featured">
+        <div class="energy-icon">☀️</div>
+        <h3>Thermal  Power</h3>
+        <p>. Powering Progress with Reliable Thermal Energy.</p>
+      </div>
+      <div class="energy-card">
+        <div class="energy-icon">💨</div>
+        <h3>Wind Energy</h3>
+        <p>Resource assessment, turbine installation, and ongoing O&M for wind farms.</p>
+      </div>
+      <div class="energy-card">
+        <div class="energy-icon">🌿</div>
+        <h3>Bio Energy</h3>
+        <p>Biogas, bio-CNG, biomass gasification and waste-to-energy plants.</p>
+      </div>
+      <div class="energy-card">
+        <div class="energy-icon">⚗️</div>
+        <h3>Green Hydrogen</h3>
+        <p>Feasibility studies, electrolyzer integration, and industrial hydrogen systems.</p>
+      </div>
+      <div class="energy-card">
+        <div class="energy-icon">🔋</div>
+        <h3>Energy Audits</h3>
+        <p>Electrical systems, HVAC, boilers, steam, and compressed air optimization.</p>
+      </div>
+      <div class="energy-card">
+        <div class="energy-icon">🧠</div>
+        <h3>Smart Energy</h3>
+        <p>IoT monitoring, AI-based management, smart metering and predictive maintenance.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUSTAINABILITY -->
+<section id="sustainability">
+  <div class="section-header center reveal">
+    <span class="section-label">ESG & Sustainability</span>
+    <h2 class="section-title">Building Businesses That Last</h2>
+    <p class="section-desc">Sustainability isn't a report you file — it's how you operate. We help organizations embed environmental and social responsibility into their core strategy.</p>
+  </div>
+  <div class="sustain-grid">
+    <div class="sustain-card reveal">
+      <div class="sustain-icon">📊</div>
+      <h3>ESG Strategy & Reporting</h3>
+      <p>We help organizations build credible ESG strategies that satisfy investor expectations, regulatory requirements, and genuine sustainability goals — not just good optics.</p>
+      <ul class="sustain-items">
+        <li>ESG Strategy Development</li>
+        <li>Sustainability Reporting (GRI, BRSR)</li>
+        <li>Stakeholder Engagement</li>
+        <li>ESG Performance Monitoring</li>
+      </ul>
+    </div>
+    <div class="sustain-card reveal">
+      <div class="sustain-icon">🌡️</div>
+      <h3>Carbon & Climate Services</h3>
+      <p>From measuring your carbon footprint to building a science-based net-zero roadmap — we make climate strategy practical and measurable for Indian industries.</p>
+      <ul class="sustain-items">
+        <li>GHG Inventory & Carbon Accounting</li>
+        <li>Net Zero Roadmaps</li>
+        <li>Carbon Credit Projects</li>
+        <li>Climate Risk Assessment</li>
+      </ul>
+    </div>
+    <div class="sustain-card reveal">
+      <div class="sustain-icon">♻️</div>
+      <h3>Circular Economy</h3>
+      <p>Shifting from linear take-make-dispose to circular models that recover value, minimize waste, and reduce dependency on virgin resources.</p>
+      <ul class="sustain-items">
+        <li>Waste Minimization Studies</li>
+        <li>Resource Recovery Solutions</li>
+        <li>Plastic Waste Management</li>
+        <li>Industrial Symbiosis</li>
+      </ul>
+    </div>
+    <div class="sustain-card reveal">
+      <div class="sustain-icon">🌍</div>
+      <h3>Climate Change Consulting</h3>
+      <p>Helping organizations understand and adapt to physical and transition climate risks — and building the resilient, low-carbon infrastructure of the future.</p>
+      <ul class="sustain-items">
+        <li>Climate Adaptation Planning</li>
+        <li>Decarbonization Strategy</li>
+        <li>Green Infrastructure</li>
+        <li>Nature-Based Solutions</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- INDUSTRIES -->
+<section id="industries">
+  <div class="section-header center reveal">
+    <span class="section-label">Industries We Serve</span>
+    <h2 class="section-title">Deep Expertise Across Sectors</h2>
+    <p class="section-desc">We understand that a pharmaceutical plant's wastewater challenge is very different from a textile mill's. That sector knowledge shapes every solution we design.</p>
+  </div>
+  <div class="industries-marquee reveal">
+    <div class="marquee-track" id="marquee1">
+      <span class="ind-pill">⚕️ Pharmaceutical</span>
+      <span class="ind-pill">🧪 Chemical</span>
+      <span class="ind-pill">🛢️ Petrochemical</span>
+      <span class="ind-pill">⛽ Oil & Gas</span>
+      <span class="ind-pill">🏭 Refineries</span>
+      <span class="ind-pill">⚡ Power Plants</span>
+      <span class="ind-pill">☀️ Solar Farms</span>
+      <span class="ind-pill">💨 Wind Energy</span>
+      <span class="ind-pill">⚙️ Steel & Cement</span>
+      <span class="ind-pill">⛏️ Mining</span>
+      <span class="ind-pill">🧵 Textile</span>
+      <span class="ind-pill">🍔 Food & Beverage</span>
+      <span class="ind-pill">🥛 Dairy</span>
+      <span class="ind-pill">🍾 Distilleries</span>
+      <span class="ind-pill">🍬 Sugar</span>
+      <span class="ind-pill">🚗 Automobile</span>
+      <span class="ind-pill">💻 Electronics</span>
+      <span class="ind-pill">📄 Paper & Pulp</span>
+      <span class="ind-pill">⚕️ Pharmaceutical</span>
+      <span class="ind-pill">🧪 Chemical</span>
+      <span class="ind-pill">🛢️ Petrochemical</span>
+      <span class="ind-pill">⛽ Oil & Gas</span>
+      <span class="ind-pill">🏭 Refineries</span>
+      <span class="ind-pill">⚡ Power Plants</span>
+      <span class="ind-pill">☀️ Solar Farms</span>
+      <span class="ind-pill">💨 Wind Energy</span>
+      <span class="ind-pill">⚙️ Steel & Cement</span>
+      <span class="ind-pill">⛏️ Mining</span>
+      <span class="ind-pill">🧵 Textile</span>
+      <span class="ind-pill">🍔 Food & Beverage</span>
+      <span class="ind-pill">🥛 Dairy</span>
+    </div>
+  </div>
+  <div class="industries-marquee reveal" style="margin-top:12px">
+    <div class="marquee-track marquee-track2" id="marquee2">
+      <span class="ind-pill">🏙️ Smart Cities</span>
+      <span class="ind-pill">🏛️ Municipalities</span>
+      <span class="ind-pill">🏗️ Industrial Parks</span>
+      <span class="ind-pill">🏢 SEZs</span>
+      <span class="ind-pill">🏥 Hospitals</span>
+      <span class="ind-pill">🏨 Hotels</span>
+      <span class="ind-pill">🎓 Educational Institutions</span>
+      <span class="ind-pill">🧴 FMCG</span>
+      <span class="ind-pill">🏗️ Infrastructure</span>
+      <span class="ind-pill">🌾 Agro Industry</span>
+      <span class="ind-pill">🏙️ Smart Cities</span>
+      <span class="ind-pill">🏛️ Municipalities</span>
+      <span class="ind-pill">🏗️ Industrial Parks</span>
+      <span class="ind-pill">🏢 SEZs</span>
+      <span class="ind-pill">🏥 Hospitals</span>
+      <span class="ind-pill">🏨 Hotels</span>
+      <span class="ind-pill">🎓 Educational Institutions</span>
+      <span class="ind-pill">🧴 FMCG</span>
+      <span class="ind-pill">🏗️ Infrastructure</span>
+      <span class="ind-pill">🌾 Agro Industry</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="section-header center reveal">
+    <span class="section-label">Our Approach</span>
+    <h2 class="section-title">How We Work With You</h2>
+    <p class="section-desc">Every project starts with listening, not selling. Here's what working with Anand Environment actually looks like.</p>
+  </div>
+  <div class="process-timeline">
+    <div class="process-step reveal">
+      <div class="step-content"><h3>Consultation & Understanding</h3><p>We start by genuinely understanding your challenge — your industry, constraints, regulatory context, and long-term goals. No template proposals.</p></div>
+      <div class="step-dot">01</div>
+      <div class="step-spacer"></div>
+    </div>
+    <div class="process-step reveal">
+      <div class="step-spacer"></div>
+      <div class="step-dot">02</div>
+      <div class="step-content"><h3>Site Assessment & Baseline Study</h3><p>Field assessments, data collection, and baseline environmental studies to ground our technical recommendations in real-world site conditions.</p></div>
+    </div>
+    <div class="process-step reveal">
+      <div class="step-content"><h3>Feasibility & Engineering Design</h3><p>From process engineering to detailed drawings, we develop technically sound, cost-effective designs tailored to your specific requirements.</p></div>
+      <div class="step-dot">03</div>
+      <div class="step-spacer"></div>
+    </div>
+    <div class="process-step reveal">
+      <div class="step-spacer"></div>
+      <div class="step-dot">04</div>
+      <div class="step-content"><h3>Regulatory Approvals</h3><p>We manage the entire regulatory approval process — from EIA reports to environmental clearances — using our established relationships with CPCB and SPCBs.</p></div>
+    </div>
+    <div class="process-step reveal">
+      <div class="step-content"><h3>Procurement & Construction</h3><p>Equipment sourcing, vendor qualification, mechanical and electrical installation — managed by our experienced EPC team to time and budget.</p></div>
+      <div class="step-dot">05</div>
+      <div class="step-spacer"></div>
+    </div>
+    <div class="process-step reveal">
+      <div class="step-spacer"></div>
+      <div class="step-dot">06</div>
+      <div class="step-content"><h3>Commissioning, Training & O&M</h3><p>System startup, performance validation, operator training, and ongoing operation and maintenance support — ensuring lasting performance after handover.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <div class="section-header center reveal">
+    <span class="section-label">Why Anand Environment</span>
+    <h2 class="section-title">What Sets Us Apart</h2>
+    <p class="section-desc">Choosing an environmental partner is a long-term decision. Here's what you can count on with us.</p>
+  </div>
+  <div class="why-grid reveal">
+    <div class="why-item"><div class="why-check">✅</div><p>Experienced Engineering Team with domain-specific expertise</p></div>
+    <div class="why-item"><div class="why-check">✅</div><p>Complete EPC Solutions under one roof</p></div>
+    <div class="why-item"><div class="why-check">✅</div><p>End-to-End Environmental Services</p></div>
+    <div class="why-item"><div class="why-check">✅</div><p>Customized Engineering — not off-the-shelf designs</p></div>
+    <div class="why-item"><div class="why-check">✅</div><p>Sustainable Technologies with proven track records</p></div>
+    <div class="why-item"><div class="why-check">✅</div><p>Advanced Automation and SCADA systems</p></div>
+    <div class="why-item"><div class="why-check">✅</div><p>Latest Treatment Technologies (MBR, ZLD, MBBR, MBR)</p></div>
+    <div class="why-item"><div class="why-check">✅</div><p>Regulatory Compliance expertise — CPCB, MoEFCC, PCBs</p></div>
+    <div class="why-item"><div class="why-check">✅</div><p>Cost-Effective Designs without compromise on quality</p></div>
+    <div class="why-item"><div class="why-check">✅</div><p>Energy-Efficient Systems that reduce operating costs</p></div>
+    <div class="why-item"><div class="why-check">✅</div><p>Reliable After-Sales Support and rapid response</p></div>
+    <div class="why-item"><div class="why-check">✅</div><p>Pan India Project Delivery capability</p></div>
+  </div>
+</section>
+
+<!-- TECHNOLOGIES -->
+<section id="tech">
+  <div class="section-header center reveal">
+    <span class="section-label">Technologies</span>
+    <h2 class="section-title">The Tools Behind Our Work</h2>
+    <p class="section-desc">We stay current with the technologies that actually deliver results — not the ones that just sound impressive in a brochure.</p>
+  </div>
+  <div class="tech-grid reveal">
+    <span class="tech-badge">MBBR</span>
+    <span class="tech-badge">SBR</span>
+    <span class="tech-badge">MBR</span>
+    <span class="tech-badge">ASP</span>
+    <span class="tech-badge">UASB</span>
+    <span class="tech-badge">Ultrafiltration (UF)</span>
+    <span class="tech-badge">Nanofiltration (NF)</span>
+    <span class="tech-badge">Reverse Osmosis (RO)</span>
+    <span class="tech-badge">MEE / MVR</span>
+    <span class="tech-badge">ZLD Systems</span>
+    <span class="tech-badge">SCADA</span>
+    <span class="tech-badge">PLC Automation</span>
+    <span class="tech-badge">IoT Sensors</span>
+    <span class="tech-badge">AI Analytics</span>
+    <span class="tech-badge">GIS Mapping</span>
+    <span class="tech-badge">Remote Monitoring</span>
+    <span class="tech-badge">Smart Metering</span>
+    <span class="tech-badge">Electrocoagulation</span>
+    <span class="tech-badge">Ozonation</span>
+    <span class="tech-badge">UV Disinfection</span>
+    <span class="tech-badge">Biogas Upgrading</span>
+    <span class="tech-badge">Solar PV</span>
+    <span class="tech-badge">OCEMS</span>
+    <span class="tech-badge">Predictive Maintenance</span>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-grid">
+    <div class="reveal-l">
+      <span class="section-label">Get In Touch</span>
+      <div class="contact-info-title">Let's Solve Your Environmental Challenge</div>
+      <p class="contact-desc" style="margin:16px 0 32px">Whether you're facing a compliance deadline, planning a new plant, or exploring renewable energy — our team is ready to help you find the right path forward. Tell us what you're working on.</p>
+      <div class="contact-detail">
+        <div class="contact-detail-icon">📍</div>
+        <div><h4>Office</h4><p>Anand Environment, India</p></div>
+      </div>
+      <div class="contact-detail" style="margin-top:12px">
+        <div class="contact-detail-icon">✉️</div>
+        <div><h4>Email</h4><p>envoanand@gmail.com</p></div>
+      </div>
+      <div class="contact-detail" style="margin-top:12px">
+        <div class="contact-detail-icon">📞9322010137</div>
+        <div><h4>Phone</h4><p>+91 — Available on Inquiry</p></div>
+      </div>
+      <div class="contact-detail" style="margin-top:12px">
+        <div class="contact-detail-icon">🌐</div>
+        <div><h4>Services</h4><p>Pan India · Municipal · Industrial · Renewable Energy</p></div>
+      </div>
+    </div>
+    <div class="reveal-r">
+      <div class="contact-form" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r2);padding:36px">
+        <h3 style="font-family:var(--ff-display);font-weight:700;font-size:1.3rem;margin-bottom:4px">Send Us a Message</h3>
+        <p style="font-size:.85rem;color:var(--muted);margin-bottom:24px">We typically respond within one business day.</p>
+        <div class="form-row">
+          <div class="form-group"><label>First Name</label><input type="text" placeholder="Rajesh"></div>
+          <div class="form-group"><label>Last Name</label><input type="text" placeholder="Sharma"></div>
+        </div>
+        <div class="form-group"><label>Email Address</label><input type="email" placeholder="rajesh@company.com"></div>
+        <div class="form-group"><label>Company / Organization</label><input type="text" placeholder="Your Company Name"></div>
+        <div class="form-group">
+          <label>Service of Interest</label>
+          <select>
+            <option value="" disabled selected>Select a service</option>
+            <option>Environmental Impact Assessment</option>
+            <option>Water / Wastewater Treatment (ETP/STP/WTP)</option>
+            <option>Zero Liquid Discharge (ZLD)</option>
+            <option>Environmental Compliance (CPCB/SPCB)</option>
+            <option>Solar Energy / EPC</option>
+            <option>Wind Energy</option>
+            <option>Energy Audit</option>
+            <option>ESG / Sustainability Consulting</option>
+            <option>Carbon Footprint / Net Zero</option>
+            <option>Environmental Monitoring</option>
+            <option>O&M Services</option>
+            <option>Municipal Infrastructure</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Message</label><textarea placeholder="Describe your project or challenge — the more detail you share, the better we can help."></textarea></div>
+        <button class="submit-btn" onclick="submitForm()">Send Message ➜</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="nav-logo" style="font-size:1.3rem">
+        <span style="width:8px;height:8px;border-radius:50%;background:var(--accent);display:inline-block"></span>
+        Anand <span style="color:var(--accent)">Environment</span>
+      </div>
+      <p>Engineering a cleaner, greener India through innovative environmental, energy, and sustainability solutions. Your trusted partner from consultation to long-term operation.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Environmental</h4>
+      <ul>
+        <li><a href="#services">EIA & Compliance</a></li>
+        <li><a href="#services">Water Treatment</a></li>
+        <li><a href="#services">Wastewater (ETP/STP)</a></li>
+        <li><a href="#services">ZLD Systems</a></li>
+        <li><a href="#services">Environmental Monitoring</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Energy</h4>
+      <ul>
+        <li><a href="#energy">Thermal Power</a></li>
+        <li><a href="#energy">Wind Energy</a></li>
+        <li><a href="#energy">Bio Energy</a></li>
+        <li><a href="#energy">Green Hydrogen</a></li>
+        <li><a href="#energy">Energy Audits</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#sustainability">Sustainability & ESG</a></li>
+        <li><a href="#industries">Industries</a></li>
+        <li><a href="#process">Our Process</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Anand Environment. All rights reserved. Environment · Energy · Sustainability.</span>
+    <div class="footer-badges">
+      <span class="f-badge">ISO 14001</span>
+      <span class="f-badge">Pan India</span>
+      <span class="f-badge">EPC</span>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast">✅ Message sent! We'll be in touch shortly.</div>
+
+<script>
+/* ── PROGRESS BAR ── */
+window.addEventListener('scroll',()=>{
+  const p=document.getElementById('progress');
+  const s=window.scrollY,t=document.body.scrollHeight-window.innerHeight;
+  p.style.width=(s/t*100)+'%';
+});
+
+/* ── NAV SCROLL ── */
+window.addEventListener('scroll',()=>{
+  document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>80);
+});
+
+/* ── MOBILE MENU ── */
+function toggleMenu(){
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+/* ── COUNTER ── */
+function animateCounter(el){
+  const target=+el.dataset.target;
+  const suffix=el.dataset.suffix||'';
+  let n=0;
+  const step=Math.ceil(target/70);
+  const i=setInterval(()=>{
+    n=Math.min(n+step,target);
+    el.textContent=n+suffix;
+    if(n>=target)clearInterval(i);
+  },25);
+}
+
+/* ── TABS ── */
+function showTab(id){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+/* ── REVEAL ── */
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('revealed');
+      // trigger counters when stats visible
+      e.target.querySelectorAll('.stat-num[data-target]').forEach(animateCounter);
+      observer.unobserve(e.target);
+    }
+  });
+},{threshold:.12});
+document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el=>observer.observe(el));
+
+// Hero counters on load
+window.addEventListener('load',()=>{
+  setTimeout(()=>{
+    document.querySelectorAll('.stat-num[data-target]').forEach(animateCounter);
+  },800);
+});
+
+/* ── PARTICLES ── */
+function createParticle(){
+  const p=document.createElement('div');
+  p.className='particle';
+  const size=Math.random()*4+2;
+  p.style.cssText=`width:${size}px;height:${size}px;left:${Math.random()*100}%;bottom:-10px;animation-duration:${Math.random()*10+8}s;animation-delay:${Math.random()*5}s`;
+  document.querySelector('.hero').appendChild(p);
+  setTimeout(()=>p.remove(),(Math.random()*10+8)*1000);
+}
+setInterval(createParticle,800);
+
+/* ── TOAST ── */
+function submitForm(){
+  const toast=document.getElementById('toast');
+  toast.classList.add('show');
+  setTimeout(()=>toast.classList.remove('show'),3500);
+}
+
+/* ── DUPLICATE MARQUEE ── */
+['marquee1','marquee2'].forEach(id=>{
+  const el=document.getElementById(id);
+  if(el){el.innerHTML+=el.innerHTML}
+});
+
+/* ── STAGGER CARDS ── */
+document.querySelectorAll('.service-card,.sustain-card,.why-item,.energy-card').forEach((c,i)=>{
+  c.style.transitionDelay=(i%4*.07)+'s';
+});
+</script>
+</body>
+</html>
