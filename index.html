@@ -5,314 +5,307 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Anand Environment — Environment · Energy · Sustainability</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg:#0f0f0f;--bg2:#141414;--bg3:#1a1a1a;--surface:#1f1f1f;--surface2:#272727;
-  --accent:#2ee89a;--accent2:#b6f02e;--accent3:#f5a623;--warm:#f5a623;
-  --text:#f2f2f2;--muted:#7a7a7a;--border:rgba(255,255,255,.09);
-  --ff-d:'Syne',sans-serif;--ff-b:'Inter',sans-serif;--r:14px;--r2:22px;
-}
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:var(--ff-b);overflow-x:hidden;line-height:1.65}
-::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--accent);border-radius:2px}
-
-/* PROGRESS */
-#progress{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2),var(--accent3));z-index:9999;transition:width .08s;width:0%}
-
-/* NAV */
-nav{position:fixed;top:0;left:0;width:100%;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:18px 6%;background:rgba(15,15,15,0);backdrop-filter:blur(0px);border-bottom:1px solid transparent;transition:all .4s}
-nav.scrolled{padding:12px 6%;background:rgba(15,15,15,.92);backdrop-filter:blur(24px);border-bottom-color:var(--border)}
-.nav-logo{font-family:var(--ff-d);font-size:1.35rem;font-weight:800;display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text)}
-.logo-mark{width:32px;height:32px;border-radius:10px;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:.9rem;color:#052918;font-weight:800;flex-shrink:0;position:relative;overflow:hidden}
-.logo-mark::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.3),transparent);border-radius:inherit}
-.nav-logo em{font-style:normal;color:var(--accent)}
-.nav-links{display:flex;gap:4px;align-items:center}
-.nav-links a{color:var(--muted);text-decoration:none;font-size:.87rem;font-weight:500;padding:7px 14px;border-radius:30px;transition:.2s}
-.nav-links a:hover{color:var(--accent);background:rgba(46,232,154,.08)}
-.nav-cta{background:var(--accent)!important;color:#052918!important;font-weight:700!important;padding:9px 20px!important}
-.nav-cta:hover{background:#1fc97f!important;transform:scale(1.04);box-shadow:0 6px 24px rgba(46,232,154,.3)}
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer}
-.hamburger span{width:24px;height:2px;background:var(--text);transition:.3s;border-radius:2px;display:block}
-
-/* MOBILE MENU */
-.mobile-menu{display:none;position:fixed;inset:0;z-index:999;background:rgba(15,15,15,.98);backdrop-filter:blur(20px);flex-direction:column;align-items:center;justify-content:center;gap:28px}
-.mobile-menu.open{display:flex}
-.mobile-menu a{color:var(--text);text-decoration:none;font-size:1.5rem;font-family:var(--ff-d);font-weight:700;transition:.2s}
-.mobile-menu a:hover{color:var(--accent)}
-.mobile-close{position:absolute;top:24px;right:6%;font-size:2rem;cursor:pointer;color:var(--muted)}
-
-/* HERO */
-.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:120px 6% 80px}
-.hero-canvas{position:absolute;inset:0;z-index:0}
-#bgCanvas{position:absolute;inset:0;width:100%;height:100%}
-.hero-content{position:relative;z-index:2;max-width:920px;text-align:center}
-.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;padding:8px 20px;border-radius:40px;border:1px solid var(--border);background:rgba(46,232,154,.05);font-size:.78rem;font-weight:700;color:var(--accent);margin-bottom:32px;letter-spacing:.1em;text-transform:uppercase;backdrop-filter:blur(10px)}
-.live-dot{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:pulse 1.5s infinite;flex-shrink:0}
-.hero h1{font-family:var(--ff-d);font-size:clamp(3rem,7.5vw,5.8rem);font-weight:800;line-height:1.05;margin-bottom:24px;letter-spacing:-.02em}
-.hero h1 .line1{display:block;background:linear-gradient(135deg,#fff 30%,rgba(255,255,255,.7));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hero h1 .line2{display:block;background:linear-gradient(135deg,var(--accent) 0%,var(--accent2) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hero-sub{font-size:1.1rem;color:var(--muted);max-width:600px;margin:0 auto 40px;font-weight:300;line-height:1.75}
-.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:64px}
-.btn-primary{padding:14px 32px;border-radius:40px;background:var(--accent);color:#052918;font-weight:700;font-size:.95rem;text-decoration:none;transition:.25s;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:10px;font-family:var(--ff-b)}
-.btn-primary:hover{background:#1fc97f;transform:translateY(-3px);box-shadow:0 16px 40px rgba(46,232,154,.35)}
-.btn-secondary{padding:14px 32px;border-radius:40px;background:rgba(255,255,255,.04);color:var(--text);font-weight:600;font-size:.95rem;text-decoration:none;transition:.25s;border:1px solid rgba(255,255,255,.15);display:inline-flex;align-items:center;gap:10px;backdrop-filter:blur(8px)}
-.btn-secondary:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-3px);background:rgba(46,232,154,.06)}
-
-/* HERO STATS */
-.hero-metrics{display:flex;gap:0;justify-content:center;flex-wrap:wrap;border-top:1px solid var(--border);padding-top:44px;position:relative}
-.metric{text-align:center;padding:0 40px;position:relative}
-.metric:not(:last-child)::after{content:'';position:absolute;right:0;top:50%;transform:translateY(-50%);height:40px;width:1px;background:var(--border)}
-.metric-num{font-family:var(--ff-d);font-size:2.8rem;font-weight:800;color:var(--accent);display:block;line-height:1;margin-bottom:6px}
-.metric-label{font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
-
-/* TICKER */
-.ticker-wrap{overflow:hidden;background:rgba(46,232,154,.03);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:12px 0;position:relative;z-index:2}
-.ticker-wrap::before,.ticker-wrap::after{content:'';position:absolute;top:0;bottom:0;width:100px;z-index:3}
-.ticker-wrap::before{left:0;background:linear-gradient(90deg,var(--bg),transparent)}
-.ticker-wrap::after{right:0;background:linear-gradient(-90deg,var(--bg),transparent)}
-.ticker-track{display:flex;gap:0;animation:ticker 35s linear infinite;width:max-content;will-change:transform}
-.ticker-item{white-space:nowrap;padding:0 28px;font-size:.8rem;font-weight:600;color:var(--accent);letter-spacing:.08em;text-transform:uppercase;display:flex;align-items:center;gap:10px}
-.ticker-item::after{content:'◆';opacity:.3;font-size:.6rem}
-@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-
-/* SECTIONS */
-section{padding:110px 6%}
-.section-label{display:inline-block;font-size:.72rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.18em;margin-bottom:16px;position:relative;padding-left:20px}
-.section-label::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:12px;height:1px;background:var(--accent)}
-.section-title{font-family:var(--ff-d);font-size:clamp(2rem,4vw,3.2rem);font-weight:800;line-height:1.1;margin-bottom:18px;letter-spacing:-.02em}
-.section-desc{font-size:1.05rem;color:var(--muted);max-width:580px;line-height:1.75}
-.section-header{margin-bottom:60px}
-.center{text-align:center}.center .section-desc{margin:0 auto}
-
-/* ABOUT */
-#about{background:var(--bg2)}
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
-.about-visual{position:relative}
-.about-globe-wrap{aspect-ratio:1;max-width:460px;border-radius:var(--r2);overflow:hidden;background:radial-gradient(circle at 30% 30%,var(--surface2),var(--bg3));border:1px solid var(--border);position:relative;display:flex;align-items:center;justify-content:center}
-#globeCanvas{width:100%;height:100%;display:block}
-.about-stat-strip{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
-.astat{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:16px 20px;position:relative;overflow:hidden}
-.astat::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));opacity:.6}
-.astat .num{font-family:var(--ff-d);font-size:1.8rem;font-weight:800;color:var(--accent)}
-.astat .lbl{font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:2px}
-.about-pillars{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:28px}
-.pillar{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:18px;display:flex;align-items:flex-start;gap:12px;transition:.25s;cursor:default}
-.pillar:hover{border-color:rgba(46,232,154,.3);background:var(--surface2);transform:translateX(4px)}
-.pillar-icon{width:36px;height:36px;border-radius:10px;background:rgba(46,232,154,.1);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
-.pillar h4{font-size:.88rem;font-weight:600;margin-bottom:4px}
-.pillar p{font-size:.78rem;color:var(--muted);line-height:1.5}
-
-/* SERVICES */
-#services{background:var(--bg)}
-.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:48px;background:var(--surface);padding:6px;border-radius:40px;border:1px solid var(--border);width:fit-content}
-.tab-btn{padding:10px 22px;border-radius:30px;border:none;background:transparent;color:var(--muted);font-size:.85rem;font-weight:600;cursor:pointer;transition:.25s;font-family:var(--ff-b)}
-.tab-btn.active{background:var(--accent);color:#052918;box-shadow:0 4px 16px rgba(46,232,154,.25)}
-.tab-btn:hover:not(.active){color:var(--text)}
-.tab-panel{display:none;animation:fadeInUp .35s ease}
-.tab-panel.active{display:block}
-.services-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:18px}
-.service-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r2);padding:28px;transition:.3s;position:relative;overflow:hidden;cursor:default}
-.service-card::before{content:'';position:absolute;top:0;right:0;width:120px;height:120px;background:radial-gradient(circle,rgba(46,232,154,.06),transparent);opacity:0;transition:.3s;border-radius:50%;transform:translate(30px,-30px)}
-.service-card:hover{transform:translateY(-5px);border-color:rgba(46,232,154,.28);box-shadow:0 20px 50px rgba(0,0,0,.4)}
-.service-card:hover::before{opacity:1}
-.svc-icon{width:48px;height:48px;border-radius:14px;background:rgba(46,232,154,.1);display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:18px;border:1px solid rgba(46,232,154,.15)}
-.svc-title{font-family:var(--ff-d);font-size:1.05rem;font-weight:700;margin-bottom:10px}
-.svc-desc{font-size:.84rem;color:var(--muted);line-height:1.65}
-.svc-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
-.svc-tag{padding:3px 10px;border-radius:20px;font-size:.72rem;font-weight:600;background:rgba(46,232,154,.08);color:var(--accent);border:1px solid rgba(46,232,154,.18)}
-
-/* ENERGY */
-#energy{background:var(--bg2);position:relative;overflow:hidden}
-.energy-bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 80% at 70% 50%,rgba(46,232,154,.05),transparent)}
-.energy-layout{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;position:relative}
-.energy-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.e-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r2);padding:22px;transition:.3s;position:relative;overflow:hidden}
-.e-card:hover{transform:translateY(-4px) scale(1.02);border-color:rgba(182,240,46,.25);background:var(--surface2)}
-.e-card.span2{grid-column:span 2;display:flex;align-items:center;gap:20px;background:linear-gradient(135deg,var(--bg3),var(--surface));border-color:rgba(46,232,154,.2)}
-.e-icon{font-size:2rem;margin-bottom:10px;display:block}
-.e-card.span2 .e-icon{font-size:2.4rem;margin-bottom:0}
-.e-card h3{font-family:var(--ff-d);font-weight:700;font-size:.95rem;margin-bottom:4px}
-.e-card p{font-size:.8rem;color:var(--muted)}
-.energy-list{list-style:none;margin-top:24px;display:flex;flex-direction:column;gap:12px}
-.energy-list li{display:flex;align-items:center;gap:14px;font-size:.9rem;color:var(--muted);padding:12px 16px;background:var(--surface);border:1px solid var(--border);border-radius:10px;transition:.25s}
-.energy-list li:hover{border-color:rgba(46,232,154,.25);color:var(--text);transform:translateX(4px)}
-.energy-list li::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0}
-
-/* IMPACT */
-#impact{background:var(--bg);position:relative;overflow:hidden}
-.impact-inner{position:relative;z-index:1}
-.impact-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 50% 50%,rgba(46,232,154,.04),transparent)}
-.impact-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden;margin-bottom:60px}
-.impact-cell{background:var(--bg);padding:40px 32px;text-align:center;transition:.3s;position:relative;overflow:hidden}
-.impact-cell::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(46,232,154,.04),transparent);opacity:0;transition:.3s}
-.impact-cell:hover{background:var(--bg2)}
-.impact-cell:hover::before{opacity:1}
-.impact-big{font-family:var(--ff-d);font-size:3.5rem;font-weight:800;line-height:1;margin-bottom:8px;background:linear-gradient(135deg,var(--accent) 0%,#4af080 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.impact-label{font-size:.82rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px}
-.impact-sub{font-size:.78rem;color:rgba(110,154,176,.6)}
-.sdg-strip{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:48px}
-.sdg-badge{padding:8px 18px;border-radius:30px;font-size:.78rem;font-weight:700;cursor:default;transition:.2s;border:1px solid}
-.sdg-badge:hover{transform:scale(1.06)}
-.sdg-badge.s1{background:rgba(229,36,28,.1);border-color:rgba(229,36,28,.3);color:#e5241c}
-.sdg-badge.s2{background:rgba(221,166,58,.1);border-color:rgba(221,166,58,.3);color:#dda63a}
-.sdg-badge.s3{background:rgba(76,159,56,.1);border-color:rgba(76,159,56,.3);color:#4c9f38}
-.sdg-badge.s4{background:rgba(0,158,219,.1);border-color:rgba(0,158,219,.3);color:#009edb}
-.sdg-badge.s5{background:rgba(63,126,68,.1);border-color:rgba(63,126,68,.3);color:#3f7e44}
-.sdg-badge.s6{background:rgba(251,166,0,.1);border-color:rgba(251,166,0,.3);color:#fba600}
-.sdg-badge.s7{background:rgba(191,139,46,.1);border-color:rgba(191,139,46,.3);color:#bf8b2e}
-.sdg-badge.s8{background:rgba(0,129,139,.1);border-color:rgba(0,129,139,.3);color:#00818b}
-
-/* SUSTAINABILITY */
-#sustainability{background:var(--bg2)}
-.sustain-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px}
-.sustain-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r2);padding:32px;position:relative;overflow:hidden;transition:.3s}
-.sustain-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));transform:scaleX(0);transform-origin:left;transition:.35s}
-.sustain-card:hover{transform:translateY(-5px);border-color:rgba(46,232,154,.22)}
-.sustain-card:hover::before{transform:scaleX(1)}
-.sustain-icon{width:52px;height:52px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:20px;border:1px solid var(--border)}
-.si1{background:rgba(46,232,154,.1);border-color:rgba(46,232,154,.2)}
-.si2{background:rgba(182,240,46,.1);border-color:rgba(182,240,46,.18)}
-.si3{background:rgba(245,166,35,.1);border-color:rgba(245,166,35,.2)}
-.si4{background:rgba(46,232,154,.08);border-color:rgba(46,232,154,.18)}
-.sustain-card h3{font-family:var(--ff-d);font-size:1.15rem;font-weight:700;margin-bottom:12px}
-.sustain-card p{color:var(--muted);font-size:.9rem;line-height:1.7;margin-bottom:16px}
-.sustain-items{list-style:none;display:flex;flex-direction:column;gap:6px}
-.sustain-items li{font-size:.82rem;color:var(--muted);padding-left:14px;position:relative}
-.sustain-items li::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:4px;height:4px;border-radius:50%;background:var(--accent)}
-
-/* INDUSTRIES */
-#industries{background:var(--bg);overflow:hidden}
-.marquee-wrap{overflow:hidden;position:relative;margin:16px 0}
-.marquee-wrap::before,.marquee-wrap::after{content:'';position:absolute;top:0;bottom:0;width:100px;z-index:2}
-.marquee-wrap::before{left:0;background:linear-gradient(90deg,var(--bg),transparent)}
-.marquee-wrap::after{right:0;background:linear-gradient(-90deg,var(--bg),transparent)}
-.marquee-row{display:flex;gap:12px;animation:scrollLeft 32s linear infinite;width:max-content}
-.marquee-row.rev{animation:scrollRight 38s linear infinite}
-.ind-chip{flex-shrink:0;padding:10px 18px;border-radius:30px;border:1px solid var(--border);background:var(--surface);font-size:.83rem;font-weight:500;color:var(--muted);white-space:nowrap;transition:.25s;cursor:default}
-.ind-chip:hover{border-color:var(--accent);color:var(--accent);transform:scale(1.04)}
-@keyframes scrollLeft{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-@keyframes scrollRight{from{transform:translateX(-50%)}to{transform:translateX(0)}}
-
-/* PROCESS */
-#process{background:var(--bg2)}
-.process-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:16px}
-.p-step{background:var(--surface);border:1px solid var(--border);border-radius:var(--r2);padding:28px;position:relative;transition:.3s;overflow:hidden}
-.p-step::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));opacity:0;transition:.3s}
-.p-step:hover{transform:translateY(-4px);border-color:rgba(46,232,154,.25)}
-.p-step:hover::after{opacity:1}
-.p-num{font-family:var(--ff-d);font-size:.75rem;font-weight:800;color:var(--accent);letter-spacing:.18em;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px}
-.p-num::after{content:'';flex:1;height:1px;background:var(--border)}
-.p-step h3{font-family:var(--ff-d);font-weight:700;font-size:1.05rem;margin-bottom:10px}
-.p-step p{font-size:.84rem;color:var(--muted);line-height:1.65}
-.p-step .p-icon{font-size:2rem;margin-bottom:14px;display:block}
-
-/* WHY */
-#why{background:var(--bg)}
-.why-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
-.why-item{display:flex;align-items:flex-start;gap:14px;padding:18px 20px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);transition:.25s}
-.why-item:hover{border-color:rgba(46,232,154,.28);background:var(--surface2);transform:translateX(4px)}
-.why-tick{width:28px;height:28px;border-radius:8px;background:rgba(46,232,154,.1);display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0}
-.why-item p{font-size:.87rem;font-weight:500;line-height:1.45}
-
-/* TECHNOLOGIES */
-#tech{background:var(--bg2)}
-.tech-cloud{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:16px}
-.tech-tag{padding:9px 20px;border-radius:30px;border:1px solid var(--border);background:var(--surface);font-size:.85rem;font-weight:600;color:var(--text);transition:.25s;cursor:default}
-.tech-tag:hover{background:var(--surface2);border-color:var(--accent2);color:var(--accent2);transform:scale(1.06);box-shadow:0 4px 20px rgba(182,240,46,.12)}
-
-/* CONTACT */
-#contact{background:var(--bg);position:relative;overflow:hidden}
-.contact-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 25% 60%,rgba(46,232,154,.05),transparent)}
-.contact-layout{display:grid;grid-template-columns:1fr 1.1fr;gap:80px;align-items:start;position:relative}
-.contact-details{display:flex;flex-direction:column;gap:14px;margin-top:32px}
-.c-detail{display:flex;align-items:flex-start;gap:14px;padding:16px 18px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);transition:.2s}
-.c-detail:hover{border-color:rgba(46,232,154,.2);transform:translateX(4px)}
-.c-detail-icon{width:36px;height:36px;border-radius:10px;background:rgba(46,232,154,.1);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
-.c-detail h4{font-size:.75rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:3px}
-.c-detail p{font-size:.9rem;color:var(--text)}
-.form-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--r2);padding:40px;display:flex;flex-direction:column;gap:16px}
-.form-title{font-family:var(--ff-d);font-size:1.4rem;font-weight:700;margin-bottom:4px}
-.form-sub{font-size:.85rem;color:var(--muted);margin-bottom:8px}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.form-group{display:flex;flex-direction:column;gap:7px}
-.form-group label{font-size:.76rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
-.form-group input,.form-group select,.form-group textarea{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:12px 16px;color:var(--text);font-family:var(--ff-b);font-size:.92rem;transition:.25s;outline:none;width:100%}
-.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(46,232,154,.08)}
-.form-group textarea{resize:vertical;min-height:120px}
-.form-group select option{background:var(--bg2)}
-.submit-btn{padding:14px 32px;border-radius:40px;background:var(--accent);color:#052918;font-weight:700;font-size:.95rem;border:none;cursor:pointer;font-family:var(--ff-b);transition:.25s;display:inline-flex;align-items:center;gap:8px;align-self:flex-start}
-.submit-btn:hover{background:#1fc97f;transform:translateY(-2px);box-shadow:0 12px 35px rgba(46,232,154,.3)}
-
-/* FOOTER */
-footer{background:var(--bg);border-top:1px solid var(--border);padding:60px 6% 32px}
-.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px}
-.footer-brand p{color:var(--muted);font-size:.87rem;line-height:1.75;margin-top:16px;max-width:280px}
-.footer-col h4{font-weight:700;font-size:.8rem;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);margin-bottom:18px}
-.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
-.footer-col ul li a{color:var(--muted);text-decoration:none;font-size:.87rem;transition:.2s}
-.footer-col ul li a:hover{color:var(--accent);padding-left:4px}
-.footer-bottom{border-top:1px solid var(--border);padding-top:28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;font-size:.8rem;color:var(--muted)}
-.footer-chips{display:flex;gap:8px;flex-wrap:wrap}
-.f-chip{padding:4px 12px;border-radius:20px;border:1px solid var(--border);font-size:.72rem;color:var(--muted)}
-
-/* TOAST */
-.toast{position:fixed;bottom:30px;right:30px;z-index:9999;background:var(--accent);color:#052918;padding:14px 22px;border-radius:var(--r);font-weight:700;font-size:.9rem;box-shadow:0 8px 40px rgba(46,232,154,.3);transform:translateY(120px);opacity:0;transition:.35s;display:flex;align-items:center;gap:10px}
-.toast.show{transform:none;opacity:1}
-
-/* REVEAL */
-.reveal{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
-.reveal.in{opacity:1;transform:none}
-.reveal-l{opacity:0;transform:translateX(-28px);transition:opacity .65s ease,transform .65s ease}
-.reveal-l.in{opacity:1;transform:none}
-.reveal-r{opacity:0;transform:translateX(28px);transition:opacity .65s ease,transform .65s ease}
-.reveal-r.in{opacity:1;transform:none}
-.delay1{transition-delay:.1s}.delay2{transition-delay:.2s}.delay3{transition-delay:.3s}.delay4{transition-delay:.4s}
-
-/* ANIMATIONS */
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-20px)}}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
-@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
-@keyframes spin{to{transform:rotate(360deg)}}
-
-/* MOBILE */
-@media(max-width:1024px){
-  .about-grid,.energy-layout,.contact-layout{grid-template-columns:1fr}
-  .impact-grid{grid-template-columns:1fr 1fr}
-  .footer-grid{grid-template-columns:1fr 1fr}
-  .process-steps{grid-template-columns:1fr 1fr}
+html{scroll-behavior:smooth;font-size:16px}
+:root{
+  --ink:#0b0c0e;
+  --ink2:#13151a;
+  --ink3:#1a1d24;
+  --card:#20242e;
+  --card2:#272c38;
+  --teal:#00c9a7;
+  --teal2:#00e5be;
+  --gold:#f4a931;
+  --text:#eef0f4;
+  --sub:#8a90a0;
+  --line:rgba(255,255,255,.07);
+  --fd:'Syne',sans-serif;
+  --fb:'Inter',sans-serif;
 }
-@media(max-width:768px){
-  .nav-links{display:none}.hamburger{display:flex}
-  .hero h1{font-size:2.8rem}
-  .metric{padding:0 20px}
-  .tabs{width:100%}
-  .process-steps,.about-pillars,.form-row{grid-template-columns:1fr}
-  .impact-grid{grid-template-columns:1fr 1fr}
-}
-@media(max-width:480px){
-  .impact-grid{grid-template-columns:1fr}
-  .footer-grid{grid-template-columns:1fr}
-  .hero-metrics{gap:0;flex-direction:column}
-  .metric::after{display:none}
-  .metric{padding:20px 0;border-bottom:1px solid var(--border)}
-}
+body{background:var(--ink);color:var(--text);font-family:var(--fb);overflow-x:hidden;line-height:1.6}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-thumb{background:var(--teal);border-radius:3px}
+img{display:block;max-width:100%}
 
-/* CURSOR GLOW */
-.cursor-glow{position:fixed;width:300px;height:300px;border-radius:50%;pointer-events:none;z-index:0;background:radial-gradient(circle,rgba(46,232,154,.05),transparent 70%);transform:translate(-50%,-50%);transition:left .15s ease,top .15s ease}
+/* ── PROGRESS ── */
+#bar{position:fixed;top:0;left:0;height:2px;width:0;background:linear-gradient(90deg,var(--teal),var(--gold));z-index:9999;transition:width .08s linear}
+
+/* ── NAV ── */
+nav{position:fixed;inset:0 0 auto 0;z-index:900;display:flex;align-items:center;justify-content:space-between;padding:20px 5%;transition:background .3s,padding .3s,border-color .3s;border-bottom:1px solid transparent}
+nav.stuck{background:rgba(11,12,14,.94);backdrop-filter:blur(20px);padding:13px 5%;border-bottom-color:var(--line)}
+.logo{display:flex;align-items:center;gap:11px;text-decoration:none;color:var(--text)}
+.logo-box{width:34px;height:34px;border-radius:9px;background:var(--teal);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:.85rem;font-weight:800;color:#051a15;flex-shrink:0}
+.logo-name{font-family:var(--fd);font-size:1.15rem;font-weight:800;line-height:1}
+.logo-name em{font-style:normal;color:var(--teal)}
+.nav-links{display:flex;gap:2px;align-items:center}
+.nav-links a{color:var(--sub);text-decoration:none;font-size:.86rem;font-weight:500;padding:7px 14px;border-radius:30px;transition:color .2s,background .2s}
+.nav-links a:hover{color:var(--teal);background:rgba(0,201,167,.07)}
+.nav-cta{background:var(--teal)!important;color:#051a15!important;font-weight:700!important;padding:9px 20px!important;border-radius:30px}
+.nav-cta:hover{background:var(--teal2)!important;box-shadow:0 4px 20px rgba(0,201,167,.3)}
+.ham{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
+.ham span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:.25s}
+.ham.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.ham.open span:nth-child(2){opacity:0}
+.ham.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* ── DRAWER ── */
+.drawer{position:fixed;inset:0;z-index:800;background:rgba(11,12,14,.97);backdrop-filter:blur(24px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1)}
+.drawer.open{transform:none}
+.drawer a{color:var(--text);text-decoration:none;font-family:var(--fd);font-size:1.6rem;font-weight:800;padding:12px 32px;border-radius:12px;transition:.2s;width:260px;text-align:center}
+.drawer a:hover{background:rgba(0,201,167,.08);color:var(--teal)}
+
+/* ── HERO ── */
+.hero{min-height:100svh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:120px 5% 80px}
+#hc{position:absolute;inset:0;width:100%;height:100%}
+.hero-body{position:relative;z-index:2;max-width:860px;text-align:center}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;padding:7px 18px;border-radius:40px;border:1px solid var(--line);background:rgba(0,201,167,.06);font-size:.75rem;font-weight:700;color:var(--teal);margin-bottom:30px;letter-spacing:.12em;text-transform:uppercase}
+.dot-live{width:6px;height:6px;border-radius:50%;background:var(--teal);animation:blink 1.6s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+.hero h1{font-family:var(--fd);font-size:clamp(2.6rem,6.5vw,5.2rem);font-weight:800;line-height:1.05;letter-spacing:-.03em;margin-bottom:22px}
+.hero h1 .w1{display:block;color:var(--text)}
+.hero h1 .w2{display:block;color:var(--teal)}
+.hero-sub{font-size:clamp(.95rem,2vw,1.1rem);color:var(--sub);max-width:580px;margin:0 auto 38px;font-weight:300;line-height:1.8}
+.btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:60px}
+.btn-p{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border-radius:40px;background:var(--teal);color:#051a15;font-weight:700;font-size:.92rem;text-decoration:none;transition:.22s;border:none;cursor:pointer;font-family:var(--fb)}
+.btn-p:hover{background:var(--teal2);transform:translateY(-2px);box-shadow:0 12px 32px rgba(0,201,167,.3)}
+.btn-s{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border-radius:40px;background:transparent;color:var(--text);font-weight:600;font-size:.92rem;text-decoration:none;transition:.22s;border:1px solid var(--line)}
+.btn-s:hover{border-color:var(--teal);color:var(--teal);transform:translateY(-2px)}
+.metrics{display:flex;justify-content:center;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:40px;gap:0}
+.met{text-align:center;padding:0 36px;position:relative}
+.met:not(:last-child)::after{content:'';position:absolute;right:0;top:50%;transform:translateY(-50%);height:36px;width:1px;background:var(--line)}
+.met-n{font-family:var(--fd);font-size:2.6rem;font-weight:800;color:var(--teal);display:block;line-height:1}
+.met-l{font-size:.7rem;color:var(--sub);text-transform:uppercase;letter-spacing:.1em;margin-top:5px}
+
+/* ── TICKER ── */
+.ticker{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:11px 0;background:rgba(0,201,167,.02);position:relative}
+.ticker::before,.ticker::after{content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2}
+.ticker::before{left:0;background:linear-gradient(90deg,var(--ink),transparent)}
+.ticker::after{right:0;background:linear-gradient(-90deg,var(--ink),transparent)}
+.t-row{display:flex;width:max-content;animation:tick 30s linear infinite}
+.t-item{white-space:nowrap;padding:0 24px;font-size:.76rem;font-weight:600;color:var(--teal);letter-spacing:.1em;text-transform:uppercase;display:flex;align-items:center;gap:8px}
+.t-item::after{content:'◆';opacity:.25;font-size:.5rem}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── SHARED ── */
+.sec{padding:96px 5%}
+.sec-alt{background:var(--ink2)}
+.tag{display:inline-flex;align-items:center;gap:8px;font-size:.7rem;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:.16em;margin-bottom:14px}
+.tag::before{content:'';width:10px;height:1px;background:var(--teal)}
+.h2{font-family:var(--fd);font-size:clamp(1.8rem,3.8vw,2.9rem);font-weight:800;line-height:1.1;letter-spacing:-.02em;margin-bottom:16px}
+.lead{font-size:1rem;color:var(--sub);max-width:560px;line-height:1.75}
+.hd{margin-bottom:56px}
+.hd.cx{text-align:center}.hd.cx .lead{margin:0 auto}
+
+/* ── ABOUT ── */
+.about-wrap{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.globe-box{border-radius:20px;border:1px solid var(--line);background:var(--ink3);overflow:hidden;aspect-ratio:1;position:relative}
+#gc{width:100%;height:100%;display:block}
+.stat-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.stat-box{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;position:relative;overflow:hidden}
+.stat-box::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--teal),var(--gold))}
+.stat-n{font-family:var(--fd);font-size:1.7rem;font-weight:800;color:var(--teal);line-height:1}
+.stat-l{font-size:.72rem;color:var(--sub);text-transform:uppercase;letter-spacing:.08em;margin-top:4px}
+.pillars{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:26px}
+.pill{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;display:flex;align-items:flex-start;gap:12px;transition:.22s}
+.pill:hover{border-color:rgba(0,201,167,.25);transform:translateX(3px)}
+.pill-ic{width:34px;height:34px;border-radius:9px;background:rgba(0,201,167,.1);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.pill h4{font-size:.85rem;font-weight:600;margin-bottom:3px}
+.pill p{font-size:.75rem;color:var(--sub);line-height:1.5}
+
+/* ── SERVICES ── */
+.tab-row{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:40px;background:var(--card);padding:5px;border-radius:40px;border:1px solid var(--line);width:fit-content;max-width:100%}
+.tb{padding:9px 20px;border-radius:30px;border:none;background:transparent;color:var(--sub);font-size:.82rem;font-weight:600;cursor:pointer;transition:.2s;font-family:var(--fb);white-space:nowrap}
+.tb.on{background:var(--teal);color:#051a15;box-shadow:0 3px 14px rgba(0,201,167,.25)}
+.tb:hover:not(.on){color:var(--text)}
+.tp{display:none;animation:fup .3s ease}
+.tp.on{display:block}
+@keyframes fup{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.sg{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:16px}
+.sc{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px;transition:.28s;position:relative;overflow:hidden}
+.sc::after{content:'';position:absolute;bottom:0;left:0;right:0;height:0;background:linear-gradient(to top,rgba(0,201,167,.06),transparent);transition:.28s}
+.sc:hover{transform:translateY(-4px);border-color:rgba(0,201,167,.22);box-shadow:0 16px 40px rgba(0,0,0,.35)}
+.sc:hover::after{height:100%}
+.si{width:44px;height:44px;border-radius:12px;background:rgba(0,201,167,.1);border:1px solid rgba(0,201,167,.14);display:flex;align-items:center;justify-content:center;font-size:1.25rem;margin-bottom:16px}
+.st{font-family:var(--fd);font-size:1rem;font-weight:700;margin-bottom:9px}
+.sd{font-size:.82rem;color:var(--sub);line-height:1.65}
+.stags{display:flex;flex-wrap:wrap;gap:5px;margin-top:14px}
+.stag{padding:3px 9px;border-radius:20px;font-size:.7rem;font-weight:600;background:rgba(0,201,167,.08);color:var(--teal);border:1px solid rgba(0,201,167,.15)}
+
+/* ── ENERGY ── */
+.energy-wrap{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.e-list{list-style:none;margin-top:22px;display:flex;flex-direction:column;gap:10px}
+.e-list li{display:flex;align-items:center;gap:13px;font-size:.88rem;color:var(--sub);padding:11px 15px;background:var(--card);border:1px solid var(--line);border-radius:10px;transition:.22s}
+.e-list li:hover{border-color:rgba(0,201,167,.22);color:var(--text);transform:translateX(4px)}
+.e-list li::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--teal);flex-shrink:0}
+.e-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ec{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;transition:.28s}
+.ec:hover{transform:translateY(-3px) scale(1.01);border-color:rgba(0,201,167,.2);background:var(--card2)}
+.ec.wide{grid-column:span 2;display:flex;align-items:center;gap:18px;background:var(--ink3);border-color:rgba(0,201,167,.15)}
+.ec-ic{font-size:1.8rem;margin-bottom:8px;display:block}
+.ec.wide .ec-ic{font-size:2.2rem;margin:0;flex-shrink:0}
+.ec h3{font-family:var(--fd);font-weight:700;font-size:.9rem;margin-bottom:4px}
+.ec p{font-size:.78rem;color:var(--sub);line-height:1.55}
+
+/* ── IMPACT ── */
+.imp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:20px;overflow:hidden;margin-bottom:56px}
+.ic{background:var(--ink);padding:36px 24px;text-align:center;transition:.25s;cursor:default}
+.ic:hover{background:var(--ink2)}
+.ic-n{font-family:var(--fd);font-size:3rem;font-weight:800;line-height:1;margin-bottom:7px;background:linear-gradient(135deg,var(--teal),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.ic-l{font-size:.76rem;color:var(--sub);text-transform:uppercase;letter-spacing:.1em;margin-bottom:5px}
+.ic-s{font-size:.72rem;color:rgba(138,144,160,.5)}
+.sdg-row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.sdg{padding:7px 16px;border-radius:30px;font-size:.75rem;font-weight:700;border:1px solid;transition:.18s;cursor:default}
+.sdg:hover{transform:scale(1.05)}
+.g1{background:rgba(76,159,56,.1);border-color:rgba(76,159,56,.3);color:#5aba43}
+.g2{background:rgba(0,158,219,.1);border-color:rgba(0,158,219,.3);color:#1aa6db}
+.g3{background:rgba(251,166,0,.1);border-color:rgba(251,166,0,.3);color:#f4a931}
+.g4{background:rgba(63,126,68,.1);border-color:rgba(63,126,68,.3);color:#4a9350}
+.g5{background:rgba(0,129,139,.1);border-color:rgba(0,129,139,.3);color:#009dab}
+
+/* ── SUSTAIN ── */
+.s-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
+.scard{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:28px;position:relative;overflow:hidden;transition:.28s}
+.scard::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;transform:scaleX(0);transform-origin:left;transition:.32s}
+.scard.c1::before{background:linear-gradient(90deg,var(--teal),var(--teal2))}
+.scard.c2::before{background:linear-gradient(90deg,var(--gold),#f7c36a)}
+.scard.c3::before{background:linear-gradient(90deg,#7c3aed,#a78bfa)}
+.scard.c4::before{background:linear-gradient(90deg,var(--teal),var(--gold))}
+.scard:hover{transform:translateY(-4px);border-color:rgba(0,201,167,.18)}
+.scard:hover::before{transform:scaleX(1)}
+.s-ic{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:18px;border:1px solid var(--line)}
+.ic1{background:rgba(0,201,167,.1);border-color:rgba(0,201,167,.18)}
+.ic2{background:rgba(244,169,49,.1);border-color:rgba(244,169,49,.18)}
+.ic3{background:rgba(124,58,237,.1);border-color:rgba(124,58,237,.18)}
+.ic4{background:rgba(0,229,190,.1);border-color:rgba(0,229,190,.18)}
+.scard h3{font-family:var(--fd);font-size:1.1rem;font-weight:700;margin-bottom:10px}
+.scard p{color:var(--sub);font-size:.86rem;line-height:1.7;margin-bottom:14px}
+.s-ul{list-style:none;display:flex;flex-direction:column;gap:5px}
+.s-ul li{font-size:.8rem;color:var(--sub);padding-left:13px;position:relative}
+.s-ul li::before{content:'';position:absolute;left:0;top:8px;width:4px;height:4px;border-radius:50%;background:var(--teal)}
+
+/* ── INDUSTRIES ── */
+.mq-wrap{overflow:hidden;position:relative;margin:14px 0}
+.mq-wrap::before,.mq-wrap::after{content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2}
+.mq-wrap::before{left:0;background:linear-gradient(90deg,var(--ink),transparent)}
+.mq-wrap::after{right:0;background:linear-gradient(-90deg,var(--ink),transparent)}
+.mq-row{display:flex;gap:10px;width:max-content;animation:sl 28s linear infinite}
+.mq-row.rv{animation:sr 34s linear infinite}
+.chip{flex-shrink:0;padding:9px 16px;border-radius:30px;border:1px solid var(--line);background:var(--card);font-size:.8rem;font-weight:500;color:var(--sub);white-space:nowrap;transition:.22s;cursor:default}
+.chip:hover{border-color:var(--teal);color:var(--teal);transform:scale(1.03)}
+@keyframes sl{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes sr{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+
+/* ── PROCESS ── */
+.ps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.ps{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px;transition:.28s;position:relative;overflow:hidden}
+.ps::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--teal),var(--gold));opacity:0;transition:.28s}
+.ps:hover{transform:translateY(-4px);border-color:rgba(0,201,167,.22)}
+.ps:hover::after{opacity:1}
+.ps-num{font-family:var(--fd);font-size:.68rem;font-weight:800;color:var(--teal);letter-spacing:.18em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:9px}
+.ps-num::after{content:'';flex:1;height:1px;background:var(--line)}
+.ps-ico{font-size:1.8rem;margin-bottom:12px;display:block}
+.ps h3{font-family:var(--fd);font-weight:700;font-size:1rem;margin-bottom:9px}
+.ps p{font-size:.82rem;color:var(--sub);line-height:1.65}
+
+/* ── WHY ── */
+.why-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.wi{display:flex;align-items:flex-start;gap:12px;padding:16px 18px;background:var(--card);border:1px solid var(--line);border-radius:12px;transition:.22s}
+.wi:hover{border-color:rgba(0,201,167,.22);background:var(--card2);transform:translateX(3px)}
+.wck{width:26px;height:26px;border-radius:7px;background:rgba(0,201,167,.1);display:flex;align-items:center;justify-content:center;font-size:.8rem;flex-shrink:0;color:var(--teal)}
+.wi p{font-size:.84rem;font-weight:500;line-height:1.45}
+
+/* ── TECH ── */
+.tc{display:flex;flex-wrap:wrap;gap:9px;justify-content:center}
+.tt{padding:8px 18px;border-radius:30px;border:1px solid var(--line);background:var(--card);font-size:.82rem;font-weight:600;color:var(--text);transition:.22s;cursor:default}
+.tt:hover{background:var(--card2);border-color:var(--teal);color:var(--teal);transform:scale(1.04)}
+
+/* ── CONTACT ── */
+.contact-wrap{display:grid;grid-template-columns:1fr 1.05fr;gap:72px;align-items:start}
+.cd-list{display:flex;flex-direction:column;gap:12px;margin-top:28px}
+.cd{display:flex;align-items:flex-start;gap:13px;padding:14px 16px;background:var(--card);border:1px solid var(--line);border-radius:12px;transition:.2s}
+.cd:hover{border-color:rgba(0,201,167,.18);transform:translateX(3px)}
+.cd-ico{width:34px;height:34px;border-radius:9px;background:rgba(0,201,167,.1);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.cd h4{font-size:.72rem;font-weight:700;color:var(--sub);text-transform:uppercase;letter-spacing:.08em;margin-bottom:3px}
+.cd p{font-size:.88rem;color:var(--text)}
+.form-box{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:36px;display:flex;flex-direction:column;gap:15px}
+.form-box h3{font-family:var(--fd);font-size:1.3rem;font-weight:700}
+.form-box .fsub{font-size:.82rem;color:var(--sub);margin-top:-8px;margin-bottom:4px}
+.fr{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fg{display:flex;flex-direction:column;gap:6px}
+.fg label{font-size:.72rem;font-weight:700;color:var(--sub);text-transform:uppercase;letter-spacing:.08em}
+.fg input,.fg select,.fg textarea{background:var(--ink2);border:1px solid var(--line);border-radius:10px;padding:11px 14px;color:var(--text);font-family:var(--fb);font-size:.88rem;transition:.22s;outline:none;width:100%;-webkit-appearance:none}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(0,201,167,.07)}
+.fg textarea{resize:vertical;min-height:110px}
+.fg select option{background:var(--ink2)}
+.sub-btn{padding:13px 28px;border-radius:40px;background:var(--teal);color:#051a15;font-weight:700;font-size:.9rem;border:none;cursor:pointer;font-family:var(--fb);transition:.22s;display:inline-flex;align-items:center;gap:8px;align-self:flex-start;margin-top:4px}
+.sub-btn:hover{background:var(--teal2);transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,201,167,.28)}
+
+/* ── FOOTER ── */
+footer{background:var(--ink);border-top:1px solid var(--line);padding:56px 5% 28px}
+.foot-grid{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:44px;margin-bottom:44px}
+.foot-brand p{color:var(--sub);font-size:.84rem;line-height:1.75;margin-top:14px;max-width:260px}
+.fc h4{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--teal);margin-bottom:16px}
+.fc ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+.fc ul li a{color:var(--sub);text-decoration:none;font-size:.84rem;transition:.18s}
+.fc ul li a:hover{color:var(--teal);padding-left:4px}
+.foot-bot{border-top:1px solid var(--line);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:.76rem;color:var(--sub)}
+.fchips{display:flex;gap:7px;flex-wrap:wrap}
+.fch{padding:4px 11px;border-radius:20px;border:1px solid var(--line);font-size:.7rem;color:var(--sub)}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:28px;right:28px;z-index:9999;background:var(--teal);color:#051a15;padding:13px 20px;border-radius:12px;font-weight:700;font-size:.86rem;box-shadow:0 6px 30px rgba(0,201,167,.3);transform:translateY(100px);opacity:0;transition:.3s;pointer-events:none}
+.toast.on{transform:none;opacity:1}
+
+/* ── REVEAL ── */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.rvl{opacity:0;transform:translateX(-24px);transition:opacity .6s ease,transform .6s ease}
+.rvr{opacity:0;transform:translateX(24px);transition:opacity .6s ease,transform .6s ease}
+.rv.in,.rvl.in,.rvr.in{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
+
+/* ── RESPONSIVE ── */
+@media(max-width:960px){
+  .about-wrap,.energy-wrap,.contact-wrap{grid-template-columns:1fr}
+  .imp-grid{grid-template-columns:1fr 1fr}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .ps-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:720px){
+  .nav-links{display:none}
+  .ham{display:flex}
+  .sec{padding:72px 5%}
+  .metrics{gap:0}
+  .met{padding:0 18px}
+  .met-n{font-size:2rem}
+  .ps-grid{grid-template-columns:1fr}
+  .pillars,.fr{grid-template-columns:1fr}
+  .tab-row{border-radius:16px;padding:4px}
+  .tb{padding:8px 14px;font-size:.78rem}
+  .ec.wide{flex-direction:column;gap:10px}
+}
+@media(max-width:500px){
+  .imp-grid{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr}
+  .metrics{flex-direction:column}
+  .met:not(:last-child)::after{display:none}
+  .met{padding:18px 0;border-bottom:1px solid var(--line)}
+  .met:last-child{padding-bottom:0}
+  .hero h1{font-size:2.2rem}
+  .stat-row{grid-template-columns:1fr 1fr}
+}
 </style>
 </head>
 <body>
 
-<div class="cursor-glow" id="cursorGlow"></div>
-<div id="progress"></div>
+<div id="bar"></div>
 
 <!-- NAV -->
-<nav id="navbar">
-  <a class="nav-logo" href="#">
-    <div class="logo-mark">AE</div>
-    Anand <em>Environment</em>
+<nav id="nav">
+  <a class="logo" href="#">
+    <div class="logo-box">AE</div>
+    <span class="logo-name">Anand <em>Environment</em></span>
   </a>
   <div class="nav-links">
     <a href="#about">About</a>
@@ -320,427 +313,332 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:60px 6% 3
     <a href="#energy">Energy</a>
     <a href="#impact">Impact</a>
     <a href="#sustainability">ESG</a>
-    <a href="#contact" class="nav-cta">Contact Us</a>
+    <a href="#contact" class="nav-cta">Contact</a>
   </div>
-  <div class="hamburger" id="ham" onclick="toggleMenu()">
+  <button class="ham" id="ham" aria-label="Menu" onclick="toggleNav()">
     <span></span><span></span><span></span>
-  </div>
+  </button>
 </nav>
 
-<div class="mobile-menu" id="mobileMenu">
-  <span class="mobile-close" onclick="toggleMenu()">✕</span>
-  <a href="#about" onclick="toggleMenu()">About</a>
-  <a href="#services" onclick="toggleMenu()">Services</a>
-  <a href="#energy" onclick="toggleMenu()">Energy</a>
-  <a href="#impact" onclick="toggleMenu()">Impact</a>
-  <a href="#sustainability" onclick="toggleMenu()">Sustainability</a>
-  <a href="#industries" onclick="toggleMenu()">Industries</a>
-  <a href="#process" onclick="toggleMenu()">Process</a>
-  <a href="#contact" onclick="toggleMenu()">Contact</a>
+<!-- DRAWER -->
+<div class="drawer" id="drawer">
+  <a href="#about" onclick="toggleNav()">About</a>
+  <a href="#services" onclick="toggleNav()">Services</a>
+  <a href="#energy" onclick="toggleNav()">Energy</a>
+  <a href="#impact" onclick="toggleNav()">Impact</a>
+  <a href="#sustainability" onclick="toggleNav()">ESG</a>
+  <a href="#industries" onclick="toggleNav()">Industries</a>
+  <a href="#process" onclick="toggleNav()">Process</a>
+  <a href="#contact" onclick="toggleNav()">Contact</a>
 </div>
 
 <!-- HERO -->
-<section class="hero" id="home">
-  <canvas id="bgCanvas"></canvas>
-  <div class="hero-content">
-    <div class="hero-eyebrow"><span class="live-dot"></span>Reliable · Sustainable · Future Ready</div>
+<section class="hero">
+  <canvas id="hc"></canvas>
+  <div class="hero-body">
+    <div class="eyebrow"><span class="dot-live"></span>Reliable · Sustainable · Future Ready</div>
     <h1>
-      <span class="line1">Engineering a Cleaner</span>
-      <span class="line2">Greener Tomorrow</span>
+      <span class="w1">Engineering a Cleaner</span>
+      <span class="w2">Greener Tomorrow</span>
     </h1>
     <p class="hero-sub">End-to-end environmental consultancy, water engineering, renewable energy, and sustainability solutions for industries and municipalities across India.</p>
-    <div class="hero-btns">
-      <a href="#services" class="btn-primary">⚡ Explore Services</a>
-      <a href="#contact" class="btn-secondary">💬 Talk to an Expert</a>
+    <div class="btns">
+      <a href="#services" class="btn-p">Explore Services →</a>
+      <a href="#contact" class="btn-s">Talk to an Expert</a>
     </div>
-    <div class="hero-metrics">
-      <div class="metric"><span class="metric-num" data-target="250" data-suffix="+">0+</span><span class="metric-label">Projects Delivered</span></div>
-      <div class="metric"><span class="metric-num" data-target="40" data-suffix="+">0+</span><span class="metric-label">Expert Engineers</span></div>
-      <div class="metric"><span class="metric-num" data-target="18" data-suffix="+">0+</span><span class="metric-label">Service Verticals</span></div>
-      <div class="metric"><span class="metric-num" data-target="500" data-suffix="M+">0</span><span class="metric-label">Litres Treated Daily</span></div>
+    <div class="metrics">
+      <div class="met"><span class="met-n" data-t="250" data-s="+">0+</span><span class="met-l">Projects Delivered</span></div>
+      <div class="met"><span class="met-n" data-t="40" data-s="+">0+</span><span class="met-l">Expert Engineers</span></div>
+      <div class="met"><span class="met-n" data-t="18" data-s="+">0+</span><span class="met-l">Service Verticals</span></div>
+      <div class="met"><span class="met-n" data-t="500" data-s="M+">0</span><span class="met-l">Litres Treated Daily</span></div>
     </div>
   </div>
 </section>
 
 <!-- TICKER -->
-<div class="ticker-wrap">
-  <div class="ticker-track" id="tickerTrack">
-    <span class="ticker-item">Zero Liquid Discharge</span>
-    <span class="ticker-item">EIA & Compliance</span>
-    <span class="ticker-item">Solar EPC</span>
-    <span class="ticker-item">Water Treatment</span>
-    <span class="ticker-item">ESG Strategy</span>
-    <span class="ticker-item">Biogas Systems</span>
-    <span class="ticker-item">SCADA Automation</span>
-    <span class="ticker-item">Carbon Net Zero</span>
-    <span class="ticker-item">MBR Technology</span>
-    <span class="ticker-item">Smart Cities</span>
-    <span class="ticker-item">Green Hydrogen</span>
-    <span class="ticker-item">Energy Audits</span>
-    <span class="ticker-item">CPCB Compliance</span>
-    <span class="ticker-item">Wind Energy O&M</span>
-    <span class="ticker-item">Sludge Management</span>
-    <span class="ticker-item">IoT Monitoring</span>
+<div class="ticker">
+  <div class="t-row" id="tk">
+    <span class="t-item">Zero Liquid Discharge</span>
+    <span class="t-item">EIA &amp; Compliance</span>
+    <span class="t-item">Water Treatment</span>
+    <span class="t-item">ESG Strategy</span>
+    <span class="t-item">Biogas Systems</span>
+    <span class="t-item">SCADA Automation</span>
+    <span class="t-item">Carbon Net Zero</span>
+    <span class="t-item">MBR Technology</span>
+    <span class="t-item">Smart Cities</span>
+    <span class="t-item">Green Hydrogen</span>
+    <span class="t-item">Energy Audits</span>
+    <span class="t-item">CPCB Compliance</span>
+    <span class="t-item">Wind Energy O&amp;M</span>
+    <span class="t-item">IoT Monitoring</span>
+    <span class="t-item">Sludge Management</span>
   </div>
 </div>
 
 <!-- ABOUT -->
-<section id="about">
-  <div class="about-grid">
-    <div class="about-visual reveal-l">
-      <div class="about-globe-wrap">
-        <canvas id="globeCanvas"></canvas>
-      </div>
-      <div class="about-stat-strip">
-        <div class="astat"><div class="num" data-target="250" data-suffix="+">250+</div><div class="lbl">Projects</div></div>
-        <div class="astat"><div class="num" data-target="40" data-suffix="+">40+</div><div class="lbl">Engineers</div></div>
-        <div class="astat"><div class="num">Pan</div><div class="lbl">India Reach</div></div>
-        <div class="astat"><div class="num">EPC</div><div class="lbl">Turnkey</div></div>
+<section class="sec sec-alt" id="about">
+  <div class="about-wrap">
+    <div class="rvl">
+      <div class="globe-box"><canvas id="gc"></canvas></div>
+      <div class="stat-row">
+        <div class="stat-box"><div class="stat-n">250+</div><div class="stat-l">Projects</div></div>
+        <div class="stat-box"><div class="stat-n">40+</div><div class="stat-l">Engineers</div></div>
+        <div class="stat-box"><div class="stat-n">Pan India</div><div class="stat-l">Reach</div></div>
+        <div class="stat-box"><div class="stat-n">EPC</div><div class="stat-l">Turnkey</div></div>
       </div>
     </div>
-    <div class="reveal-r">
-      <span class="section-label">Who We Are</span>
-      <h2 class="section-title">India's Trusted Partner in Environment & Energy</h2>
-      <p class="section-desc">We are not just consultants — we are problem-solvers who understand that environmental challenges don't come with textbook answers. Anand Environment has helped industries, municipalities, and infrastructure developers navigate complex regulatory landscapes, build cleaner processes, and transition to sustainable energy.</p>
-      <p class="section-desc" style="margin-top:14px;font-size:.95rem">From designing a zero-liquid discharge system for a pharmaceutical plant to helping a municipality achieve CPCB compliance, we bring technical depth and real-world pragmatism to every project.</p>
-      <div class="about-pillars">
-        <div class="pillar"><div class="pillar-icon">🏗️</div><div><h4>EPC Solutions</h4><p>End-to-end engineering, procurement & construction</p></div></div>
-        <div class="pillar"><div class="pillar-icon">📋</div><div><h4>Regulatory Expertise</h4><p>CPCB, SPCB, EIA and compliance consulting</p></div></div>
-        <div class="pillar"><div class="pillar-icon">🔬</div><div><h4>Advanced Technologies</h4><p>MBR, ZLD, IoT, SCADA and smart systems</p></div></div>
-        <div class="pillar"><div class="pillar-icon">🔧</div><div><h4>O&M Services</h4><p>Long-term operation and performance optimization</p></div></div>
+    <div class="rvr">
+      <div class="tag">Who We Are</div>
+      <h2 class="h2">India's Trusted Partner in Environment &amp; Energy</h2>
+      <p class="lead">We are not just consultants — we are problem-solvers. Anand Environment has helped industries, municipalities, and infrastructure developers navigate complex regulatory landscapes, build cleaner processes, and transition to sustainable energy.</p>
+      <p class="lead" style="margin-top:12px;font-size:.92rem">From designing a zero-liquid discharge system for a pharmaceutical plant to helping a municipality achieve CPCB compliance, we bring technical depth and real-world pragmatism to every project.</p>
+      <div class="pillars">
+        <div class="pill"><div class="pill-ic">🏗️</div><div><h4>EPC Solutions</h4><p>End-to-end engineering, procurement &amp; construction</p></div></div>
+        <div class="pill"><div class="pill-ic">📋</div><div><h4>Regulatory Expertise</h4><p>CPCB, SPCB, EIA and compliance</p></div></div>
+        <div class="pill"><div class="pill-ic">🔬</div><div><h4>Advanced Tech</h4><p>MBR, ZLD, IoT, SCADA systems</p></div></div>
+        <div class="pill"><div class="pill-ic">🔧</div><div><h4>O&amp;M Services</h4><p>Long-term operation &amp; optimization</p></div></div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- SERVICES -->
-<section id="services">
-  <div class="section-header center reveal">
-    <span class="section-label">What We Do</span>
-    <h2 class="section-title">Comprehensive Environmental Services</h2>
-    <p class="section-desc">Every service we offer is built around one principle: sustainable outcomes with engineering excellence.</p>
+<section class="sec" id="services">
+  <div class="hd cx rv">
+    <div class="tag">What We Do</div>
+    <h2 class="h2">Comprehensive Environmental Services</h2>
+    <p class="lead">Every service we offer is built around one principle: sustainable outcomes with engineering excellence.</p>
   </div>
-  <div class="tabs reveal">
-    <button class="tab-btn active" onclick="showTab('eia',this)">EIA & Compliance</button>
-    <button class="tab-btn" onclick="showTab('water',this)">Water Treatment</button>
-    <button class="tab-btn" onclick="showTab('wastewater',this)">Wastewater</button>
-    <button class="tab-btn" onclick="showTab('monitoring',this)">Monitoring</button>
-    <button class="tab-btn" onclick="showTab('municipal',this)">Municipal</button>
-    <button class="tab-btn" onclick="showTab('industrial',this)">Industrial EPC</button>
+  <div class="tab-row rv">
+    <button class="tb on" onclick="tab('eia',this)">EIA &amp; Compliance</button>
+    <button class="tb" onclick="tab('water',this)">Water Treatment</button>
+    <button class="tb" onclick="tab('ww',this)">Wastewater</button>
+    <button class="tb" onclick="tab('mon',this)">Monitoring</button>
+    <button class="tb" onclick="tab('mun',this)">Municipal</button>
+    <button class="tb" onclick="tab('ind',this)">Industrial EPC</button>
   </div>
 
-  <div class="tab-panel active" id="tab-eia">
-    <div class="services-grid">
-      <div class="service-card"><div class="svc-icon">📄</div><div class="svc-title">Environmental Impact Assessment</div><div class="svc-desc">We prepare comprehensive EIA reports that satisfy MoEFCC requirements while genuinely identifying environmental risks — not just checking boxes.</div><div class="svc-tags"><span class="svc-tag">Baseline Studies</span><span class="svc-tag">EMP</span><span class="svc-tag">Public Hearing</span><span class="svc-tag">EC Support</span></div></div>
-      <div class="service-card"><div class="svc-icon">⚖️</div><div class="svc-title">Regulatory Compliance</div><div class="svc-desc">CPCB and SPCB compliance, consent to establish and operate, hazardous waste authorization, and periodic environmental audits.</div><div class="svc-tags"><span class="svc-tag">CPCB</span><span class="svc-tag">SPCB</span><span class="svc-tag">HWM Rules</span><span class="svc-tag">Audits</span></div></div>
-      <div class="service-card"><div class="svc-icon">🌱</div><div class="svc-title">ESG Compliance</div><div class="svc-desc">We help organizations build ESG frameworks, prepare sustainability disclosures, and align operations with BRSR, GRI, and global reporting standards.</div><div class="svc-tags"><span class="svc-tag">BRSR</span><span class="svc-tag">GRI</span><span class="svc-tag">ISO 14001</span><span class="svc-tag">Reporting</span></div></div>
-      <div class="service-card"><div class="svc-icon">🔍</div><div class="svc-title">Environmental Audit</div><div class="svc-desc">Systematic assessments of operational practices, regulatory adherence, and environmental performance — keeping you ahead of compliance requirements.</div><div class="svc-tags"><span class="svc-tag">Gap Analysis</span><span class="svc-tag">Action Plans</span><span class="svc-tag">ISO 14001</span></div></div>
+  <div class="tp on" id="tp-eia">
+    <div class="sg">
+      <div class="sc"><div class="si">📄</div><div class="st">Environmental Impact Assessment</div><div class="sd">Comprehensive EIA reports satisfying MoEFCC requirements — genuinely identifying environmental risks, not just checking boxes.</div><div class="stags"><span class="stag">Baseline Studies</span><span class="stag">EMP</span><span class="stag">Public Hearing</span><span class="stag">EC Support</span></div></div>
+      <div class="sc"><div class="si">⚖️</div><div class="st">Regulatory Compliance</div><div class="sd">CPCB and SPCB compliance, consent to establish and operate, hazardous waste authorization, and periodic environmental audits.</div><div class="stags"><span class="stag">CPCB</span><span class="stag">SPCB</span><span class="stag">HWM Rules</span><span class="stag">Audits</span></div></div>
+      <div class="sc"><div class="si">🌱</div><div class="st">ESG Compliance</div><div class="sd">Build ESG frameworks, prepare sustainability disclosures, and align operations with BRSR, GRI, and global reporting standards.</div><div class="stags"><span class="stag">BRSR</span><span class="stag">GRI</span><span class="stag">ISO 14001</span><span class="stag">Reporting</span></div></div>
+      <div class="sc"><div class="si">🔍</div><div class="st">Environmental Audit</div><div class="sd">Systematic assessments of operational practices, regulatory adherence, and environmental performance — stay ahead of compliance.</div><div class="stags"><span class="stag">Gap Analysis</span><span class="stag">Action Plans</span><span class="stag">ISO 14001</span></div></div>
     </div>
   </div>
-  <div class="tab-panel" id="tab-water">
-    <div class="services-grid">
-      <div class="service-card"><div class="svc-icon">💧</div><div class="svc-title">Water Treatment Plants (WTP)</div><div class="svc-desc">Design, supply, install, and operate water treatment systems for industrial and municipal applications — ensuring safe, reliable water supply.</div><div class="svc-tags"><span class="svc-tag">RO</span><span class="svc-tag">UF</span><span class="svc-tag">DM Plants</span><span class="svc-tag">Softening</span></div></div>
-      <div class="service-card"><div class="svc-icon">🏭</div><div class="svc-title">Effluent Treatment Plants (ETP)</div><div class="svc-desc">Custom ETP systems for pharmaceutical, chemical, textile, food processing, and heavy industries — designed for maximum efficiency and minimum footprint.</div><div class="svc-tags"><span class="svc-tag">Physio-Chemical</span><span class="svc-tag">Biological</span><span class="svc-tag">Tertiary</span></div></div>
-      <div class="service-card"><div class="svc-icon">♻️</div><div class="svc-title">Zero Liquid Discharge (ZLD)</div><div class="svc-desc">We engineer ZLD systems that recover water from even the most challenging effluent streams, helping industries achieve zero discharge.</div><div class="svc-tags"><span class="svc-tag">MEE</span><span class="svc-tag">MVR</span><span class="svc-tag">Crystallizer</span></div></div>
-      <div class="service-card"><div class="svc-icon">🌊</div><div class="svc-title">Water Audits & Management</div><div class="svc-desc">Systematic assessment of water consumption, losses, and reuse opportunities — delivering practical water conservation strategies.</div><div class="svc-tags"><span class="svc-tag">Water Balance</span><span class="svc-tag">Rainwater Harvesting</span><span class="svc-tag">Smart Metering</span></div></div>
+  <div class="tp" id="tp-water">
+    <div class="sg">
+      <div class="sc"><div class="si">💧</div><div class="st">Water Treatment Plants (WTP)</div><div class="sd">Design, supply, install, and operate water treatment systems for industrial and municipal applications.</div><div class="stags"><span class="stag">RO</span><span class="stag">UF</span><span class="stag">DM Plants</span><span class="stag">Softening</span></div></div>
+      <div class="sc"><div class="si">🏭</div><div class="st">Effluent Treatment Plants (ETP)</div><div class="sd">Custom ETP systems for pharmaceutical, chemical, textile, and food industries — maximum efficiency, minimum footprint.</div><div class="stags"><span class="stag">Physio-Chemical</span><span class="stag">Biological</span><span class="stag">Tertiary</span></div></div>
+      <div class="sc"><div class="si">♻️</div><div class="st">Zero Liquid Discharge (ZLD)</div><div class="sd">ZLD systems that recover water from even the most challenging effluent streams — zero discharge, full resource recovery.</div><div class="stags"><span class="stag">MEE</span><span class="stag">MVR</span><span class="stag">Crystallizer</span></div></div>
+      <div class="sc"><div class="si">🌊</div><div class="st">Water Audits &amp; Management</div><div class="sd">Assessment of water consumption, losses, and reuse opportunities — practical conservation strategies and smart monitoring.</div><div class="stags"><span class="stag">Water Balance</span><span class="stag">Rainwater Harvesting</span><span class="stag">Smart Metering</span></div></div>
     </div>
   </div>
-  <div class="tab-panel" id="tab-wastewater">
-    <div class="services-grid">
-      <div class="service-card"><div class="svc-icon">🏙️</div><div class="svc-title">Sewage Treatment Plants (STP)</div><div class="svc-desc">Municipal and industrial STPs using proven biological treatment technologies — from conventional ASP to advanced MBR systems.</div><div class="svc-tags"><span class="svc-tag">MBR</span><span class="svc-tag">MBBR</span><span class="svc-tag">SBR</span><span class="svc-tag">ASP</span></div></div>
-      <div class="service-card"><div class="svc-icon">🔄</div><div class="svc-title">Wastewater Recycling</div><div class="svc-desc">Tertiary treatment and advanced polishing systems that enable treated water to be reused within industrial processes.</div><div class="svc-tags"><span class="svc-tag">Tertiary</span><span class="svc-tag">Sand Filtration</span><span class="svc-tag">ACF</span></div></div>
-      <div class="service-card"><div class="svc-icon">🧪</div><div class="svc-title">Membrane Technologies</div><div class="svc-desc">UF, NF, RO membrane systems for high-purity water production and advanced wastewater polishing applications across industries.</div><div class="svc-tags"><span class="svc-tag">UF</span><span class="svc-tag">NF</span><span class="svc-tag">RO</span><span class="svc-tag">Nano Filtration</span></div></div>
-      <div class="service-card"><div class="svc-icon">🌱</div><div class="svc-title">Sludge Management</div><div class="svc-desc">Complete sludge handling solutions including thickening, dewatering, drying, and co-processing — responsible management of treatment byproducts.</div><div class="svc-tags"><span class="svc-tag">Thickener</span><span class="svc-tag">Filter Press</span><span class="svc-tag">Dryer</span></div></div>
+  <div class="tp" id="tp-ww">
+    <div class="sg">
+      <div class="sc"><div class="si">🏙️</div><div class="st">Sewage Treatment Plants (STP)</div><div class="sd">Municipal and industrial STPs using proven biological treatment — from conventional ASP to advanced MBR systems.</div><div class="stags"><span class="stag">MBR</span><span class="stag">MBBR</span><span class="stag">SBR</span><span class="stag">ASP</span></div></div>
+      <div class="sc"><div class="si">🔄</div><div class="st">Wastewater Recycling</div><div class="sd">Tertiary treatment and advanced polishing systems enabling treated water reuse — reducing freshwater demand significantly.</div><div class="stags"><span class="stag">Tertiary</span><span class="stag">Sand Filtration</span><span class="stag">ACF</span></div></div>
+      <div class="sc"><div class="si">🧪</div><div class="st">Membrane Technologies</div><div class="sd">UF, NF, RO membrane systems for high-purity water production and advanced wastewater polishing across industries.</div><div class="stags"><span class="stag">UF</span><span class="stag">NF</span><span class="stag">RO</span><span class="stag">Nano Filtration</span></div></div>
+      <div class="sc"><div class="si">🌱</div><div class="st">Sludge Management</div><div class="sd">Complete sludge handling — thickening, dewatering, drying, and co-processing for responsible byproduct management.</div><div class="stags"><span class="stag">Thickener</span><span class="stag">Filter Press</span><span class="stag">Dryer</span></div></div>
     </div>
   </div>
-  <div class="tab-panel" id="tab-monitoring">
-    <div class="services-grid">
-      <div class="service-card"><div class="svc-icon">🌬️</div><div class="svc-title">Air Quality Monitoring</div><div class="svc-desc">Ambient air quality monitoring, stack emission testing, and dispersion modeling for industrial facilities and regulatory compliance.</div><div class="svc-tags"><span class="svc-tag">Ambient AQM</span><span class="svc-tag">Stack Emission</span><span class="svc-tag">Dispersion</span></div></div>
-      <div class="service-card"><div class="svc-icon">💦</div><div class="svc-title">Water Quality Monitoring</div><div class="svc-desc">Surface water, groundwater, and effluent monitoring with NABL-accredited laboratory support and real-time IoT sensor networks.</div><div class="svc-tags"><span class="svc-tag">Surface Water</span><span class="svc-tag">Groundwater</span><span class="svc-tag">IoT Sensors</span></div></div>
-      <div class="service-card"><div class="svc-icon">🔊</div><div class="svc-title">Noise & Soil Monitoring</div><div class="svc-desc">Day-night noise level measurement, vibration analysis, soil quality assessment, and contamination mapping for industrial projects.</div><div class="svc-tags"><span class="svc-tag">Noise Mapping</span><span class="svc-tag">Vibration</span><span class="svc-tag">Soil Analysis</span></div></div>
-      <div class="service-card"><div class="svc-icon">📡</div><div class="svc-title">Online Continuous Monitoring</div><div class="svc-desc">OCEMS installation and integration for real-time effluent and emission monitoring, directly connected to CPCB/SPCB servers.</div><div class="svc-tags"><span class="svc-tag">OCEMS</span><span class="svc-tag">CPCB Connect</span><span class="svc-tag">Real-time</span></div></div>
+  <div class="tp" id="tp-mon">
+    <div class="sg">
+      <div class="sc"><div class="si">🌬️</div><div class="st">Air Quality Monitoring</div><div class="sd">Ambient air quality monitoring, stack emission testing, and dispersion modeling for industrial facilities.</div><div class="stags"><span class="stag">Ambient AQM</span><span class="stag">Stack Emission</span><span class="stag">Dispersion</span></div></div>
+      <div class="sc"><div class="si">💦</div><div class="st">Water Quality Monitoring</div><div class="sd">Surface water, groundwater, and effluent monitoring with NABL-accredited lab support and real-time IoT networks.</div><div class="stags"><span class="stag">Surface Water</span><span class="stag">Groundwater</span><span class="stag">IoT Sensors</span></div></div>
+      <div class="sc"><div class="si">🔊</div><div class="st">Noise &amp; Soil Monitoring</div><div class="sd">Day-night noise measurement, vibration analysis, soil quality assessment, and contamination mapping.</div><div class="stags"><span class="stag">Noise Mapping</span><span class="stag">Vibration</span><span class="stag">Soil Analysis</span></div></div>
+      <div class="sc"><div class="si">📡</div><div class="st">Online Continuous Monitoring</div><div class="sd">OCEMS installation for real-time effluent and emission monitoring, directly connected to CPCB/SPCB servers.</div><div class="stags"><span class="stag">OCEMS</span><span class="stag">CPCB Connect</span><span class="stag">Real-time</span></div></div>
     </div>
   </div>
-  <div class="tab-panel" id="tab-municipal">
-    <div class="services-grid">
-      <div class="service-card"><div class="svc-icon">🏛️</div><div class="svc-title">Water Supply Infrastructure</div><div class="svc-desc">Complete water supply projects from source to tap — intakes, transmission mains, treatment plants, distribution networks.</div><div class="svc-tags"><span class="svc-tag">Intake Works</span><span class="svc-tag">Transmission</span><span class="svc-tag">Distribution</span></div></div>
-      <div class="service-card"><div class="svc-icon">🕳️</div><div class="svc-title">Sewerage Network</div><div class="svc-desc">Design and execution of underground sewerage systems, pumping stations, and sewage conveyance infrastructure for cities and towns.</div><div class="svc-tags"><span class="svc-tag">Underground Sewerage</span><span class="svc-tag">Pumping Stations</span></div></div>
-      <div class="service-card"><div class="svc-icon">🏙️</div><div class="svc-title">Smart City Projects</div><div class="svc-desc">IoT-enabled smart water distribution, leak detection, SCADA-managed utilities, and integrated city environmental monitoring solutions.</div><div class="svc-tags"><span class="svc-tag">IoT</span><span class="svc-tag">SCADA</span><span class="svc-tag">Smart Water</span></div></div>
-      <div class="service-card"><div class="svc-icon">🗑️</div><div class="svc-title">Solid Waste Management</div><div class="svc-desc">Municipal solid waste processing, faecal sludge treatment plants, and integrated waste-to-energy solutions for urban local bodies.</div><div class="svc-tags"><span class="svc-tag">MSW</span><span class="svc-tag">FSTP</span><span class="svc-tag">Waste to Energy</span></div></div>
+  <div class="tp" id="tp-mun">
+    <div class="sg">
+      <div class="sc"><div class="si">🏛️</div><div class="st">Water Supply Infrastructure</div><div class="sd">Complete water supply from source to tap — intakes, transmission mains, treatment plants, distribution networks.</div><div class="stags"><span class="stag">Intake Works</span><span class="stag">Transmission</span><span class="stag">Distribution</span></div></div>
+      <div class="sc"><div class="si">🕳️</div><div class="st">Sewerage Network</div><div class="sd">Underground sewerage systems, pumping stations, and sewage conveyance infrastructure for cities and towns.</div><div class="stags"><span class="stag">Underground Sewerage</span><span class="stag">Pumping Stations</span></div></div>
+      <div class="sc"><div class="si">🏙️</div><div class="st">Smart City Projects</div><div class="sd">IoT-enabled smart water distribution, leak detection, SCADA-managed utilities, and integrated city monitoring.</div><div class="stags"><span class="stag">IoT</span><span class="stag">SCADA</span><span class="stag">Smart Water</span></div></div>
+      <div class="sc"><div class="si">🗑️</div><div class="st">Solid Waste Management</div><div class="sd">Municipal solid waste processing, faecal sludge treatment plants, and waste-to-energy solutions for urban bodies.</div><div class="stags"><span class="stag">MSW</span><span class="stag">FSTP</span><span class="stag">Waste to Energy</span></div></div>
     </div>
   </div>
-  <div class="tab-panel" id="tab-industrial">
-    <div class="services-grid">
-      <div class="service-card"><div class="svc-icon">🏗️</div><div class="svc-title">Process & Plant Design</div><div class="svc-desc">From process flow diagrams to detailed engineering drawings — our team handles all aspects of industrial plant design for environmental systems.</div><div class="svc-tags"><span class="svc-tag">PFD</span><span class="svc-tag">P&ID</span><span class="svc-tag">Civil</span><span class="svc-tag">Piping</span></div></div>
-      <div class="service-card"><div class="svc-icon">🔩</div><div class="svc-title">EPC Turnkey Projects</div><div class="svc-desc">Complete engineering, procurement, and construction services — a single accountable partner from project concept through commissioning.</div><div class="svc-tags"><span class="svc-tag">Mechanical</span><span class="svc-tag">Electrical</span><span class="svc-tag">Civil</span><span class="svc-tag">Instrumentation</span></div></div>
-      <div class="service-card"><div class="svc-icon">🛠️</div><div class="svc-title">Operation & Maintenance</div><div class="svc-desc">Annual maintenance contracts, plant performance optimization, spare parts management, and remote monitoring — peak efficiency always.</div><div class="svc-tags"><span class="svc-tag">AMC</span><span class="svc-tag">Remote Monitoring</span><span class="svc-tag">Performance</span></div></div>
-      <div class="service-card"><div class="svc-icon">⚡</div><div class="svc-title">Automation & SCADA</div><div class="svc-desc">PLC programming, SCADA integration, MCC design, and instrumentation for fully automated environmental treatment and monitoring systems.</div><div class="svc-tags"><span class="svc-tag">PLC</span><span class="svc-tag">SCADA</span><span class="svc-tag">MCC</span><span class="svc-tag">HMI</span></div></div>
+  <div class="tp" id="tp-ind">
+    <div class="sg">
+      <div class="sc"><div class="si">🏗️</div><div class="st">Process &amp; Plant Design</div><div class="sd">From process flow diagrams to detailed engineering drawings — complete industrial plant design for environmental systems.</div><div class="stags"><span class="stag">PFD</span><span class="stag">P&amp;ID</span><span class="stag">Civil</span><span class="stag">Piping</span></div></div>
+      <div class="sc"><div class="si">🔩</div><div class="st">EPC Turnkey Projects</div><div class="sd">Complete engineering, procurement, and construction — one accountable partner from concept through commissioning.</div><div class="stags"><span class="stag">Mechanical</span><span class="stag">Electrical</span><span class="stag">Civil</span><span class="stag">Instrumentation</span></div></div>
+      <div class="sc"><div class="si">🛠️</div><div class="st">Operation &amp; Maintenance</div><div class="sd">Annual maintenance contracts, performance optimization, spare parts management, and remote monitoring.</div><div class="stags"><span class="stag">AMC</span><span class="stag">Remote Monitoring</span><span class="stag">Performance</span></div></div>
+      <div class="sc"><div class="si">⚡</div><div class="st">Automation &amp; SCADA</div><div class="sd">PLC programming, SCADA integration, MCC design, and instrumentation for fully automated treatment systems.</div><div class="stags"><span class="stag">PLC</span><span class="stag">SCADA</span><span class="stag">MCC</span><span class="stag">HMI</span></div></div>
     </div>
   </div>
 </section>
 
 <!-- ENERGY -->
-<section id="energy">
-  <div class="energy-bg"></div>
-  <div class="energy-layout">
-    <div class="reveal-l">
-      <span class="section-label">Energy Solutions</span>
-      <h2 class="section-title">Powering Industries with Clean, Smart Energy</h2>
-      <p class="section-desc">We help industries reduce energy costs, improve efficiency, and transition to renewable power — combining technical expertise with practical knowledge of India's energy landscape.</p>
-      <ul class="energy-list">
-      
-        <li>Wind energy development and O&M</li>
+<section class="sec sec-alt" id="energy">
+  <div class="energy-wrap">
+    <div class="rvl">
+      <div class="tag">Energy Solutions</div>
+      <h2 class="h2">Powering Industries with Clean, Smart Energy</h2>
+      <p class="lead">We help industries reduce energy costs, improve efficiency, and transition to renewable power — combining technical expertise with practical knowledge of India's energy landscape.</p>
+      <ul class="e-list">
+        <li>Wind energy development and O&amp;M</li>
         <li>Biogas, biomass and waste-to-energy systems</li>
         <li>Green hydrogen feasibility and integration</li>
         <li>Energy audits and efficiency optimization</li>
         <li>Smart grid, IoT and AI-based energy management</li>
         <li>Thermal power solutions and modernization</li>
       </ul>
-      <a href="#contact" class="btn-primary" style="margin-top:28px;display:inline-flex">Get Energy Assessment →</a>
+      <a href="#contact" class="btn-p" style="margin-top:28px">Get Energy Assessment →</a>
     </div>
-    <div class="energy-cards reveal-r">
-      <div class="e-card span2">
-        <div><div class="e-icon">☀️</div></div>
-        <div><h3> Thermal Power</h3><p>Turnkey solar EPC from rooftop to utility scale — and reliable thermal power modernization for heavy industries.</p></div>
+    <div class="e-grid rvr">
+      <div class="ec wide">
+        <div class="ec-ic">⚡</div>
+        <div><h3>Thermal Power</h3><p>Reliable thermal power modernization and efficiency improvements for energy-intensive industries across India.</p></div>
       </div>
-      <div class="e-card"><div class="e-icon">💨</div><h3>Wind Energy</h3><p>Resource assessment, turbine installation, and O&M for wind projects.</p></div>
-      <div class="e-card"><div class="e-icon">🌿</div><h3>Bio Energy</h3><p>Biogas, bio-CNG, biomass gasification and waste-to-energy plants.</p></div>
-      <div class="e-card"><div class="e-icon">⚗️</div><h3>Green Hydrogen</h3><p>Feasibility studies, electrolyzer integration, and industrial hydrogen systems.</p></div>
-      <div class="e-card"><div class="e-icon">🔋</div><h3>Energy Audits</h3><p>Electrical, HVAC, boilers, steam and compressed air optimization.</p></div>
-      <div class="e-card"><div class="e-icon">🧠</div><h3>Smart Energy</h3><p>IoT, AI-based management, smart metering and predictive maintenance.</p></div>
+      <div class="ec"><span class="ec-ic">💨</span><h3>Wind Energy</h3><p>Resource assessment, turbine installation, and ongoing O&amp;M for wind farms.</p></div>
+      <div class="ec"><span class="ec-ic">🌿</span><h3>Bio Energy</h3><p>Biogas, bio-CNG, biomass gasification and waste-to-energy plants.</p></div>
+      <div class="ec"><span class="ec-ic">⚗️</span><h3>Green Hydrogen</h3><p>Feasibility studies, electrolyzer integration, and industrial hydrogen systems.</p></div>
+      <div class="ec"><span class="ec-ic">🔋</span><h3>Energy Audits</h3><p>Electrical, HVAC, boilers, steam and compressed air optimization.</p></div>
+      <div class="ec"><span class="ec-ic">🧠</span><h3>Smart Energy</h3><p>IoT monitoring, AI-based management, and predictive maintenance.</p></div>
     </div>
   </div>
 </section>
 
 <!-- IMPACT -->
-<section id="impact">
-  <div class="impact-bg"></div>
-  <div class="impact-inner">
-    <div class="section-header center reveal">
-      <span class="section-label">Our Impact</span>
-      <h2 class="section-title">Numbers That Matter</h2>
-      <p class="section-desc">Real outcomes, not aspirations. Here's the measurable difference we've made for India's environment and industries.</p>
-    </div>
-    <div class="impact-grid reveal">
-      <div class="impact-cell">
-        <div class="impact-big" data-target="250" data-suffix="+">0+</div>
-        <div class="impact-label">Projects Delivered</div>
-        <div class="impact-sub">Across 15+ states</div>
-      </div>
-      <div class="impact-cell">
-        <div class="impact-big" data-target="500" data-suffix="M+">0</div>
-        <div class="impact-label">Litres Treated Daily</div>
-        <div class="impact-sub">Cumulative plant capacity</div>
-      </div>
-      <div class="impact-cell">
-        <div class="impact-big" data-target="98" data-suffix="%">0%</div>
-        <div class="impact-label">Compliance Rate</div>
-        <div class="impact-sub">CPCB/SPCB clearances</div>
-      </div>
-      <div class="impact-cell">
-        <div class="impact-big" data-target="40" data-suffix="+">0+</div>
-        <div class="impact-label">Expert Engineers</div>
-        <div class="impact-sub">Multidisciplinary team</div>
-      </div>
-    </div>
-    <div class="section-header center reveal" style="margin-top:80px;margin-bottom:16px">
-      <span class="section-label">Global Alignment</span>
-      <h2 class="section-title" style="font-size:clamp(1.6rem,3vw,2.4rem)">Contributing to the UN Sustainable Development Goals</h2>
-    </div>
-    <div class="sdg-strip reveal">
-      <span class="sdg-badge s3">SDG 3 · Good Health</span>
-      <span class="sdg-badge s4">SDG 6 · Clean Water</span>
-      <span class="sdg-badge s6">SDG 7 · Clean Energy</span>
-      <span class="sdg-badge s2">SDG 9 · Industry & Innovation</span>
-      <span class="sdg-badge s5">SDG 11 · Sustainable Cities</span>
-      <span class="sdg-badge s3">SDG 12 · Responsible Production</span>
-      <span class="sdg-badge s4">SDG 13 · Climate Action</span>
-      <span class="sdg-badge s1">SDG 15 · Life on Land</span>
-    </div>
+<section class="sec" id="impact">
+  <div class="hd cx rv">
+    <div class="tag">Our Impact</div>
+    <h2 class="h2">Numbers That Matter</h2>
+    <p class="lead">Real outcomes, not aspirations — the measurable difference we've made for India's environment and industries.</p>
+  </div>
+  <div class="imp-grid rv">
+    <div class="ic"><div class="ic-n" data-t="250" data-s="+">0+</div><div class="ic-l">Projects Delivered</div><div class="ic-s">Across 15+ states</div></div>
+    <div class="ic"><div class="ic-n" data-t="500" data-s="M+">0</div><div class="ic-l">Litres Treated Daily</div><div class="ic-s">Cumulative capacity</div></div>
+    <div class="ic"><div class="ic-n" data-t="98" data-s="%">0%</div><div class="ic-l">Compliance Rate</div><div class="ic-s">CPCB/SPCB clearances</div></div>
+    <div class="ic"><div class="ic-n" data-t="40" data-s="+">0+</div><div class="ic-l">Expert Engineers</div><div class="ic-s">Multidisciplinary team</div></div>
+  </div>
+  <div class="hd cx rv" style="margin-top:72px;margin-bottom:20px">
+    <div class="tag">Global Alignment</div>
+    <h2 class="h2" style="font-size:clamp(1.5rem,3vw,2.2rem)">Aligned with UN Sustainable Development Goals</h2>
+  </div>
+  <div class="sdg-row rv">
+    <span class="sdg g1">SDG 3 · Good Health</span>
+    <span class="sdg g2">SDG 6 · Clean Water</span>
+    <span class="sdg g3">SDG 7 · Clean Energy</span>
+    <span class="sdg g4">SDG 9 · Industry &amp; Innovation</span>
+    <span class="sdg g5">SDG 11 · Sustainable Cities</span>
+    <span class="sdg g1">SDG 12 · Responsible Production</span>
+    <span class="sdg g2">SDG 13 · Climate Action</span>
+    <span class="sdg g4">SDG 15 · Life on Land</span>
   </div>
 </section>
 
 <!-- SUSTAINABILITY -->
-<section id="sustainability">
-  <div class="section-header center reveal">
-    <span class="section-label">ESG & Sustainability</span>
-    <h2 class="section-title">Building Businesses That Last</h2>
-    <p class="section-desc">Sustainability isn't a report you file — it's how you operate. We help organizations embed environmental and social responsibility into their core strategy.</p>
+<section class="sec sec-alt" id="sustainability">
+  <div class="hd cx rv">
+    <div class="tag">ESG &amp; Sustainability</div>
+    <h2 class="h2">Building Businesses That Last</h2>
+    <p class="lead">Sustainability isn't a report you file — it's how you operate. We help organizations embed environmental responsibility into their core strategy.</p>
   </div>
-  <div class="sustain-grid">
-    <div class="sustain-card reveal delay1">
-      <div class="sustain-icon si1">📊</div>
-      <h3>ESG Strategy & Reporting</h3>
-      <p>We help organizations build credible ESG strategies that satisfy investor expectations, regulatory requirements, and genuine sustainability goals — not just good optics.</p>
-      <ul class="sustain-items">
-        <li>ESG Strategy Development</li>
-        <li>Sustainability Reporting (GRI, BRSR)</li>
-        <li>Stakeholder Engagement</li>
-        <li>ESG Performance Monitoring</li>
-      </ul>
-    </div>
-    <div class="sustain-card reveal delay2">
-      <div class="sustain-icon si2">🌡️</div>
-      <h3>Carbon & Climate Services</h3>
-      <p>From measuring your carbon footprint to building a science-based net-zero roadmap — we make climate strategy practical and measurable for Indian industries.</p>
-      <ul class="sustain-items">
-        <li>GHG Inventory & Carbon Accounting</li>
-        <li>Net Zero Roadmaps</li>
-        <li>Carbon Credit Projects</li>
-        <li>Climate Risk Assessment</li>
-      </ul>
-    </div>
-    <div class="sustain-card reveal delay3">
-      <div class="sustain-icon si3">♻️</div>
-      <h3>Circular Economy</h3>
-      <p>Shifting from linear take-make-dispose to circular models that recover value, minimize waste, and reduce dependency on virgin resources.</p>
-      <ul class="sustain-items">
-        <li>Waste Minimization Studies</li>
-        <li>Resource Recovery Solutions</li>
-        <li>Plastic Waste Management</li>
-        <li>Industrial Symbiosis</li>
-      </ul>
-    </div>
-    <div class="sustain-card reveal delay4">
-      <div class="sustain-icon si4">🌍</div>
-      <h3>Climate Change Consulting</h3>
-      <p>Helping organizations understand and adapt to physical and transition climate risks — building resilient, low-carbon infrastructure for the future.</p>
-      <ul class="sustain-items">
-        <li>Climate Adaptation Planning</li>
-        <li>Decarbonization Strategy</li>
-        <li>Green Infrastructure</li>
-        <li>Nature-Based Solutions</li>
-      </ul>
-    </div>
+  <div class="s-grid">
+    <div class="scard c1 rv d1"><div class="s-ic ic1">📊</div><h3>ESG Strategy &amp; Reporting</h3><p>Credible ESG strategies that satisfy investor expectations, regulatory requirements, and genuine sustainability goals.</p><ul class="s-ul"><li>ESG Strategy Development</li><li>Sustainability Reporting (GRI, BRSR)</li><li>Stakeholder Engagement</li><li>ESG Performance Monitoring</li></ul></div>
+    <div class="scard c2 rv d2"><div class="s-ic ic2">🌡️</div><h3>Carbon &amp; Climate Services</h3><p>From measuring your carbon footprint to building a science-based net-zero roadmap — practical and measurable climate strategy.</p><ul class="s-ul"><li>GHG Inventory &amp; Carbon Accounting</li><li>Net Zero Roadmaps</li><li>Carbon Credit Projects</li><li>Climate Risk Assessment</li></ul></div>
+    <div class="scard c3 rv d3"><div class="s-ic ic3">♻️</div><h3>Circular Economy</h3><p>Shifting from linear take-make-dispose to circular models that recover value, minimize waste, and reduce virgin resource use.</p><ul class="s-ul"><li>Waste Minimization Studies</li><li>Resource Recovery Solutions</li><li>Plastic Waste Management</li><li>Industrial Symbiosis</li></ul></div>
+    <div class="scard c4 rv d4"><div class="s-ic ic4">🌍</div><h3>Climate Change Consulting</h3><p>Helping organizations understand and adapt to physical and transition climate risks — resilient, low-carbon infrastructure.</p><ul class="s-ul"><li>Climate Adaptation Planning</li><li>Decarbonization Strategy</li><li>Green Infrastructure</li><li>Nature-Based Solutions</li></ul></div>
   </div>
 </section>
 
 <!-- INDUSTRIES -->
-<section id="industries">
-  <div class="section-header center reveal">
-    <span class="section-label">Industries We Serve</span>
-    <h2 class="section-title">Deep Expertise Across Sectors</h2>
-    <p class="section-desc">We understand that a pharmaceutical plant's wastewater challenge is very different from a textile mill's. That sector knowledge shapes every solution we design.</p>
+<section class="sec" id="industries">
+  <div class="hd cx rv">
+    <div class="tag">Industries We Serve</div>
+    <h2 class="h2">Deep Expertise Across Sectors</h2>
+    <p class="lead">A pharmaceutical plant's wastewater challenge is very different from a textile mill's. That sector knowledge shapes every solution we design.</p>
   </div>
-  <div class="marquee-wrap reveal">
-    <div class="marquee-row" id="m1">
-      <span class="ind-chip">⚕️ Pharmaceutical</span><span class="ind-chip">🧪 Chemical</span><span class="ind-chip">🛢️ Petrochemical</span><span class="ind-chip">⛽ Oil & Gas</span><span class="ind-chip">🏭 Refineries</span><span class="ind-chip">⚡ Power Plants</span><span class="ind-chip">☀️ Solar Farms</span><span class="ind-chip">💨 Wind Energy</span><span class="ind-chip">⚙️ Steel & Cement</span><span class="ind-chip">⛏️ Mining</span><span class="ind-chip">🧵 Textile</span><span class="ind-chip">🍔 Food & Beverage</span><span class="ind-chip">🥛 Dairy</span><span class="ind-chip">🍾 Distilleries</span><span class="ind-chip">🍬 Sugar</span><span class="ind-chip">🚗 Automobile</span><span class="ind-chip">📄 Paper & Pulp</span>
+  <div class="mq-wrap rv">
+    <div class="mq-row" id="m1">
+      <span class="chip">⚕️ Pharmaceutical</span><span class="chip">🧪 Chemical</span><span class="chip">🛢️ Petrochemical</span><span class="chip">⛽ Oil &amp; Gas</span><span class="chip">🏭 Refineries</span><span class="chip">⚡ Power Plants</span><span class="chip">💨 Wind Energy</span><span class="chip">⚙️ Steel &amp; Cement</span><span class="chip">⛏️ Mining</span><span class="chip">🧵 Textile</span><span class="chip">🍔 Food &amp; Beverage</span><span class="chip">🥛 Dairy</span><span class="chip">🍾 Distilleries</span><span class="chip">🍬 Sugar</span><span class="chip">🚗 Automobile</span><span class="chip">📄 Paper &amp; Pulp</span>
     </div>
   </div>
-  <div class="marquee-wrap reveal" style="margin-top:12px">
-    <div class="marquee-row rev" id="m2">
-      <span class="ind-chip">🏙️ Smart Cities</span><span class="ind-chip">🏛️ Municipalities</span><span class="ind-chip">🏗️ Industrial Parks</span><span class="ind-chip">🏢 SEZs</span><span class="ind-chip">🏥 Hospitals</span><span class="ind-chip">🏨 Hotels & Hospitality</span><span class="ind-chip">🎓 Educational Institutions</span><span class="ind-chip">🧴 FMCG</span><span class="ind-chip">🏗️ Infrastructure</span><span class="ind-chip">🌾 Agro Industry</span><span class="ind-chip">💻 Electronics</span><span class="ind-chip">🧬 Biotech</span><span class="ind-chip">🏦 Real Estate</span>
+  <div class="mq-wrap rv" style="margin-top:10px">
+    <div class="mq-row rv" id="m2">
+      <span class="chip">🏙️ Smart Cities</span><span class="chip">🏛️ Municipalities</span><span class="chip">🏗️ Industrial Parks</span><span class="chip">🏢 SEZs</span><span class="chip">🏥 Hospitals</span><span class="chip">🏨 Hotels</span><span class="chip">🎓 Educational Institutions</span><span class="chip">🧴 FMCG</span><span class="chip">🌾 Agro Industry</span><span class="chip">💻 Electronics</span><span class="chip">🧬 Biotech</span><span class="chip">🏦 Real Estate</span>
     </div>
   </div>
 </section>
 
 <!-- PROCESS -->
-<section id="process">
-  <div class="section-header center reveal">
-    <span class="section-label">Our Approach</span>
-    <h2 class="section-title">How We Work With You</h2>
-    <p class="section-desc">Every project starts with listening, not selling. Here's what working with Anand Environment actually looks like.</p>
+<section class="sec sec-alt" id="process">
+  <div class="hd cx rv">
+    <div class="tag">Our Approach</div>
+    <h2 class="h2">How We Work With You</h2>
+    <p class="lead">Every project starts with listening, not selling. Here's what working with Anand Environment actually looks like.</p>
   </div>
-  <div class="process-steps">
-    <div class="p-step reveal delay1">
-      <div class="p-num">Step 01</div>
-      <div class="p-icon">🎯</div>
-      <h3>Consultation & Understanding</h3>
-      <p>We start by genuinely understanding your challenge — your industry, constraints, regulatory context, and long-term goals. No template proposals.</p>
-    </div>
-    <div class="p-step reveal delay2">
-      <div class="p-num">Step 02</div>
-      <div class="p-icon">🔬</div>
-      <h3>Site Assessment & Baseline Study</h3>
-      <p>Field assessments, data collection, and baseline environmental studies to ground our technical recommendations in real-world site conditions.</p>
-    </div>
-    <div class="p-step reveal delay3">
-      <div class="p-num">Step 03</div>
-      <div class="p-icon">📐</div>
-      <h3>Feasibility & Engineering Design</h3>
-      <p>From process engineering to detailed drawings, we develop technically sound, cost-effective designs tailored to your specific requirements.</p>
-    </div>
-    <div class="p-step reveal delay1">
-      <div class="p-num">Step 04</div>
-      <div class="p-icon">📋</div>
-      <h3>Regulatory Approvals</h3>
-      <p>We manage the entire regulatory approval process — from EIA reports to environmental clearances — using our established relationships with CPCB and SPCBs.</p>
-    </div>
-    <div class="p-step reveal delay2">
-      <div class="p-num">Step 05</div>
-      <div class="p-icon">🏗️</div>
-      <h3>Procurement & Construction</h3>
-      <p>Equipment sourcing, vendor qualification, mechanical and electrical installation — managed by our experienced EPC team to time and budget.</p>
-    </div>
-    <div class="p-step reveal delay3">
-      <div class="p-num">Step 06</div>
-      <div class="p-icon">🚀</div>
-      <h3>Commissioning & O&M</h3>
-      <p>System startup, performance validation, operator training, and ongoing operation and maintenance support — ensuring lasting performance after handover.</p>
-    </div>
+  <div class="ps-grid">
+    <div class="ps rv d1"><div class="ps-num">Step 01</div><div class="ps-ico">🎯</div><h3>Consultation &amp; Understanding</h3><p>We start by genuinely understanding your challenge — your industry, constraints, regulatory context, and long-term goals. No template proposals.</p></div>
+    <div class="ps rv d2"><div class="ps-num">Step 02</div><div class="ps-ico">🔬</div><h3>Site Assessment &amp; Baseline Study</h3><p>Field assessments and baseline environmental studies to ground our technical recommendations in real-world site conditions.</p></div>
+    <div class="ps rv d3"><div class="ps-num">Step 03</div><div class="ps-ico">📐</div><h3>Feasibility &amp; Engineering Design</h3><p>From process engineering to detailed drawings — technically sound, cost-effective designs tailored to your specific requirements.</p></div>
+    <div class="ps rv d1"><div class="ps-num">Step 04</div><div class="ps-ico">📋</div><h3>Regulatory Approvals</h3><p>We manage the entire regulatory approval process — from EIA reports to environmental clearances — with CPCB and SPCBs.</p></div>
+    <div class="ps rv d2"><div class="ps-num">Step 05</div><div class="ps-ico">🏗️</div><h3>Procurement &amp; Construction</h3><p>Equipment sourcing, vendor qualification, mechanical and electrical installation — managed to time and budget.</p></div>
+    <div class="ps rv d3"><div class="ps-num">Step 06</div><div class="ps-ico">🚀</div><h3>Commissioning &amp; O&amp;M</h3><p>System startup, performance validation, operator training, and ongoing O&amp;M support — ensuring lasting performance.</p></div>
   </div>
 </section>
 
 <!-- WHY US -->
-<section id="why" style="background:var(--bg2)">
-  <div class="section-header center reveal">
-    <span class="section-label">Why Anand Environment</span>
-    <h2 class="section-title">What Sets Us Apart</h2>
-    <p class="section-desc">Choosing an environmental partner is a long-term decision. Here's what you can count on with us.</p>
+<section class="sec" id="why">
+  <div class="hd cx rv">
+    <div class="tag">Why Anand Environment</div>
+    <h2 class="h2">What Sets Us Apart</h2>
+    <p class="lead">Choosing an environmental partner is a long-term decision. Here's what you can count on.</p>
   </div>
-  <div class="why-list reveal">
-    <div class="why-item"><div class="why-tick">✅</div><p>Experienced Engineering Team with domain-specific expertise</p></div>
-    <div class="why-item"><div class="why-tick">✅</div><p>Complete EPC Solutions under one roof</p></div>
-    <div class="why-item"><div class="why-tick">✅</div><p>End-to-End Environmental Services — concept to O&M</p></div>
-    <div class="why-item"><div class="why-tick">✅</div><p>Customized Engineering — not off-the-shelf designs</p></div>
-    <div class="why-item"><div class="why-tick">✅</div><p>Sustainable Technologies with proven track records</p></div>
-    <div class="why-item"><div class="why-tick">✅</div><p>Advanced Automation and SCADA systems</p></div>
-    <div class="why-item"><div class="why-tick">✅</div><p>Latest Treatment Technologies — MBR, ZLD, MBBR</p></div>
-    <div class="why-item"><div class="why-tick">✅</div><p>Regulatory Compliance expertise — CPCB, MoEFCC, PCBs</p></div>
-    <div class="why-item"><div class="why-tick">✅</div><p>Cost-Effective Designs without compromise on quality</p></div>
-    <div class="why-item"><div class="why-tick">✅</div><p>Energy-Efficient Systems that reduce operating costs</p></div>
-    <div class="why-item"><div class="why-tick">✅</div><p>Reliable After-Sales Support and rapid response</p></div>
-    <div class="why-item"><div class="why-tick">✅</div><p>Pan India Project Delivery capability</p></div>
+  <div class="why-grid rv">
+    <div class="wi"><div class="wck">✓</div><p>Experienced engineering team with domain-specific expertise</p></div>
+    <div class="wi"><div class="wck">✓</div><p>Complete EPC solutions under one roof</p></div>
+    <div class="wi"><div class="wck">✓</div><p>End-to-end environmental services — concept to O&amp;M</p></div>
+    <div class="wi"><div class="wck">✓</div><p>Customized engineering — not off-the-shelf designs</p></div>
+    <div class="wi"><div class="wck">✓</div><p>Sustainable technologies with proven track records</p></div>
+    <div class="wi"><div class="wck">✓</div><p>Advanced automation and SCADA systems</p></div>
+    <div class="wi"><div class="wck">✓</div><p>Latest treatment technologies — MBR, ZLD, MBBR</p></div>
+    <div class="wi"><div class="wck">✓</div><p>Regulatory compliance expertise — CPCB, MoEFCC</p></div>
+    <div class="wi"><div class="wck">✓</div><p>Cost-effective designs without compromise on quality</p></div>
+    <div class="wi"><div class="wck">✓</div><p>Energy-efficient systems that reduce operating costs</p></div>
+    <div class="wi"><div class="wck">✓</div><p>Reliable after-sales support and rapid response</p></div>
+    <div class="wi"><div class="wck">✓</div><p>Pan India project delivery capability</p></div>
   </div>
 </section>
 
 <!-- TECHNOLOGIES -->
-<section id="tech">
-  <div class="section-header center reveal">
-    <span class="section-label">Technologies</span>
-    <h2 class="section-title">The Tools Behind Our Work</h2>
-    <p class="section-desc">We stay current with technologies that actually deliver results — not the ones that just sound impressive in a brochure.</p>
+<section class="sec sec-alt" id="tech">
+  <div class="hd cx rv">
+    <div class="tag">Technologies</div>
+    <h2 class="h2">The Tools Behind Our Work</h2>
+    <p class="lead">We stay current with technologies that actually deliver results — not the ones that just sound impressive in a brochure.</p>
   </div>
-  <div class="tech-cloud reveal">
-    <span class="tech-tag">MBBR</span><span class="tech-tag">SBR</span><span class="tech-tag">MBR</span><span class="tech-tag">ASP</span><span class="tech-tag">UASB</span><span class="tech-tag">Ultrafiltration (UF)</span><span class="tech-tag">Nanofiltration (NF)</span><span class="tech-tag">Reverse Osmosis (RO)</span><span class="tech-tag">MEE / MVR</span><span class="tech-tag">ZLD Systems</span><span class="tech-tag">SCADA</span><span class="tech-tag">PLC Automation</span><span class="tech-tag">IoT Sensors</span><span class="tech-tag">AI Analytics</span><span class="tech-tag">GIS Mapping</span><span class="tech-tag">Remote Monitoring</span><span class="tech-tag">Smart Metering</span><span class="tech-tag">Electrocoagulation</span><span class="tech-tag">Ozonation</span><span class="tech-tag">UV Disinfection</span><span class="tech-tag">Biogas Upgrading</span><span class="tech-tag">Solar PV</span><span class="tech-tag">OCEMS</span><span class="tech-tag">Predictive Maintenance</span>
+  <div class="tc rv">
+    <span class="tt">MBBR</span><span class="tt">SBR</span><span class="tt">MBR</span><span class="tt">ASP</span><span class="tt">UASB</span><span class="tt">Ultrafiltration (UF)</span><span class="tt">Nanofiltration (NF)</span><span class="tt">Reverse Osmosis (RO)</span><span class="tt">MEE / MVR</span><span class="tt">ZLD Systems</span><span class="tt">SCADA</span><span class="tt">PLC Automation</span><span class="tt">IoT Sensors</span><span class="tt">AI Analytics</span><span class="tt">GIS Mapping</span><span class="tt">Remote Monitoring</span><span class="tt">Smart Metering</span><span class="tt">Electrocoagulation</span><span class="tt">Ozonation</span><span class="tt">UV Disinfection</span><span class="tt">Biogas Upgrading</span><span class="tt">OCEMS</span><span class="tt">Predictive Maintenance</span>
   </div>
 </section>
 
 <!-- CONTACT -->
-<section id="contact">
-  <div class="contact-bg"></div>
-  <div class="contact-layout">
-    <div class="reveal-l">
-      <span class="section-label">Get In Touch</span>
-      <h2 class="section-title">Let's Solve Your Environmental Challenge</h2>
-      <p class="section-desc">Whether you're facing a compliance deadline, planning a new plant, or exploring renewable energy — our team is ready to help you find the right path forward.</p>
-      <div class="contact-details">
-        <div class="c-detail"><div class="c-detail-icon">📍</div><div><h4>Office</h4><p>Anand Environment, India</p></div></div>
-        <div class="c-detail"><div class="c-detail-icon">✉️</div><div><h4>Email</h4><p>envoanand@gmail.com</p></div></div>
-        <div class="c-detail"><div class="c-detail-icon">📞</div><div><h4>Phone</h4><p>+91 9322010137</p></div></div>
-        <div class="c-detail"><div class="c-detail-icon">🌐</div><div><h4>Services</h4><p>Pan India · Municipal · Industrial · Renewable Energy</p></div></div>
+<section class="sec" id="contact">
+  <div class="contact-wrap">
+    <div class="rvl">
+      <div class="tag">Get In Touch</div>
+      <h2 class="h2">Let's Solve Your Environmental Challenge</h2>
+      <p class="lead">Whether you're facing a compliance deadline, planning a new plant, or exploring renewable energy — our team is ready to help find the right path forward.</p>
+      <div class="cd-list">
+        <div class="cd"><div class="cd-ico">📍</div><div><h4>Office</h4><p>Anand Environment, India</p></div></div>
+        <div class="cd"><div class="cd-ico">✉️</div><div><h4>Email</h4><p>envoanand@gmail.com</p></div></div>
+        <div class="cd"><div class="cd-ico">📞</div><div><h4>Phone</h4><p>+91 9322010137</p></div></div>
+        <div class="cd"><div class="cd-ico">🌐</div><div><h4>Coverage</h4><p>Pan India · Municipal · Industrial · Renewable Energy</p></div></div>
       </div>
     </div>
-    <div class="form-box reveal-r">
-      <div class="form-title">Send Us a Message</div>
-      <div class="form-sub">We typically respond within one business day.</div>
-      <div class="form-row">
-        <div class="form-group"><label>First Name</label><input type="text" placeholder="Rajesh"></div>
-        <div class="form-group"><label>Last Name</label><input type="text" placeholder="Sharma"></div>
+    <div class="form-box rvr">
+      <h3>Send Us a Message</h3>
+      <p class="fsub">We typically respond within one business day.</p>
+      <div class="fr">
+        <div class="fg"><label>First Name</label><input type="text" placeholder="Rajesh"></div>
+        <div class="fg"><label>Last Name</label><input type="text" placeholder="Sharma"></div>
       </div>
-      <div class="form-group"><label>Email Address</label><input type="email" placeholder="rajesh@company.com"></div>
-      <div class="form-group"><label>Company / Organization</label><input type="text" placeholder="Your Company Name"></div>
-      <div class="form-group">
+      <div class="fg"><label>Email</label><input type="email" placeholder="rajesh@company.com"></div>
+      <div class="fg"><label>Company</label><input type="text" placeholder="Your Company Name"></div>
+      <div class="fg">
         <label>Service of Interest</label>
         <select>
           <option value="" disabled selected>Select a service</option>
@@ -748,44 +646,43 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:60px 6% 3
           <option>Water / Wastewater Treatment (ETP/STP/WTP)</option>
           <option>Zero Liquid Discharge (ZLD)</option>
           <option>Environmental Compliance (CPCB/SPCB)</option>
-          <option>Solar Energy / EPC</option>
           <option>Wind Energy</option>
           <option>Energy Audit</option>
           <option>ESG / Sustainability Consulting</option>
           <option>Carbon Footprint / Net Zero</option>
           <option>Environmental Monitoring</option>
-          <option>O&M Services</option>
+          <option>O&amp;M Services</option>
           <option>Municipal Infrastructure</option>
           <option>Other</option>
         </select>
       </div>
-      <div class="form-group"><label>Message</label><textarea placeholder="Describe your project or challenge — the more detail you share, the better we can help."></textarea></div>
-      <button class="submit-btn" onclick="submitForm()">Send Message ➜</button>
+      <div class="fg"><label>Message</label><textarea placeholder="Describe your project or challenge — the more detail you share, the better we can help."></textarea></div>
+      <button class="sub-btn" onclick="sendForm()">Send Message →</button>
     </div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-grid">
-    <div class="footer-brand">
-      <div class="nav-logo" style="font-size:1.25rem;text-decoration:none">
-        <div class="logo-mark" style="width:28px;height:28px;font-size:.8rem">AE</div>
-        Anand <em style="font-style:normal;color:var(--accent)">Environment</em>
-      </div>
+  <div class="foot-grid">
+    <div class="foot-brand">
+      <a class="logo" href="#" style="text-decoration:none">
+        <div class="logo-box">AE</div>
+        <span class="logo-name">Anand <em>Environment</em></span>
+      </a>
       <p>Engineering a cleaner, greener India through innovative environmental, energy, and sustainability solutions. Your trusted partner from consultation to long-term operation.</p>
     </div>
-    <div class="footer-col">
+    <div class="fc">
       <h4>Environmental</h4>
       <ul>
-        <li><a href="#services">EIA & Compliance</a></li>
+        <li><a href="#services">EIA &amp; Compliance</a></li>
         <li><a href="#services">Water Treatment</a></li>
         <li><a href="#services">Wastewater (ETP/STP)</a></li>
         <li><a href="#services">ZLD Systems</a></li>
-        <li><a href="#services">Environmental Monitoring</a></li>
+        <li><a href="#services">Monitoring</a></li>
       </ul>
     </div>
-    <div class="footer-col">
+    <div class="fc">
       <h4>Energy</h4>
       <ul>
         <li><a href="#energy">Thermal Power</a></li>
@@ -795,24 +692,24 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:60px 6% 3
         <li><a href="#energy">Energy Audits</a></li>
       </ul>
     </div>
-    <div class="footer-col">
+    <div class="fc">
       <h4>Company</h4>
       <ul>
         <li><a href="#about">About Us</a></li>
-        <li><a href="#sustainability">Sustainability & ESG</a></li>
+        <li><a href="#sustainability">ESG &amp; Sustainability</a></li>
         <li><a href="#industries">Industries</a></li>
         <li><a href="#process">Our Process</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </div>
   </div>
-  <div class="footer-bottom">
-    <span>© 2025 Anand Environment. All rights reserved. Environment · Energy · Sustainability</span>
-    <div class="footer-chips">
-      <span class="f-chip">ISO 14001</span>
-      <span class="f-chip">Pan India</span>
-      <span class="f-chip">EPC</span>
-      <span class="f-chip">CPCB Compliant</span>
+  <div class="foot-bot">
+    <span>© 2025 Anand Environment. All rights reserved.</span>
+    <div class="fchips">
+      <span class="fch">ISO 14001</span>
+      <span class="fch">Pan India</span>
+      <span class="fch">EPC</span>
+      <span class="fch">CPCB Compliant</span>
     </div>
   </div>
 </footer>
@@ -820,179 +717,132 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:60px 6% 3
 <div class="toast" id="toast">✅ Message sent! We'll be in touch shortly.</div>
 
 <script>
-/* ── PROGRESS ── */
+/* PROGRESS */
 window.addEventListener('scroll',()=>{
-  const s=window.scrollY,t=document.body.scrollHeight-window.innerHeight;
-  document.getElementById('progress').style.width=(s/t*100)+'%';
-  document.getElementById('navbar').classList.toggle('scrolled',s>60);
+  const s=window.scrollY,t=document.body.scrollHeight-innerHeight;
+  document.getElementById('bar').style.width=(s/t*100)+'%';
+  document.getElementById('nav').classList.toggle('stuck',s>50);
 });
 
-/* ── CURSOR GLOW ── */
-document.addEventListener('mousemove',e=>{
-  const g=document.getElementById('cursorGlow');
-  g.style.left=e.clientX+'px';g.style.top=e.clientY+'px';
-});
+/* NAV */
+let navOpen=false;
+function toggleNav(){
+  navOpen=!navOpen;
+  document.getElementById('ham').classList.toggle('open',navOpen);
+  document.getElementById('drawer').classList.toggle('open',navOpen);
+  document.body.style.overflow=navOpen?'hidden':'';
+}
 
-/* ── MOBILE MENU ── */
-function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open')}
-
-/* ── HERO PARTICLE CANVAS ── */
-(function(){
-  const c=document.getElementById('bgCanvas');
-  const ctx=c.getContext('2d');
-  let W,H,pts=[],mouse={x:0,y:0};
-  function resize(){W=c.width=window.innerWidth;H=c.height=window.innerHeight}
-  resize();window.addEventListener('resize',resize);
-  window.addEventListener('mousemove',e=>{mouse.x=e.clientX;mouse.y=e.clientY});
-  for(let i=0;i<80;i++)pts.push({
-    x:Math.random()*W,y:Math.random()*H,
-    vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4,
-    r:Math.random()*2+1,life:Math.random()
-  });
-  function draw(){
+/* CANVAS HERO */
+(()=>{
+  const c=document.getElementById('hc'),ctx=c.getContext('2d');
+  let W,H,pts=[],mx=0,my=0;
+  const resize=()=>{W=c.width=innerWidth;H=c.height=innerHeight};
+  resize();addEventListener('resize',resize);
+  addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
+  for(let i=0;i<70;i++)pts.push({x:Math.random()*1e4,y:Math.random()*1e4,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35,r:Math.random()*1.8+.8});
+  const draw=()=>{
     ctx.clearRect(0,0,W,H);
     pts.forEach(p=>{
       p.x+=p.vx;p.y+=p.vy;
       if(p.x<0)p.x=W;if(p.x>W)p.x=0;
       if(p.y<0)p.y=H;if(p.y>H)p.y=0;
-      const dx=p.x-mouse.x,dy=p.y-mouse.y,d=Math.sqrt(dx*dx+dy*dy);
-      if(d<120){const f=.003*(120-d);p.vx+=dx*f;p.vy+=dy*f}
+      const dx=p.x-mx,dy=p.y-my,d=Math.hypot(dx,dy);
+      if(d<130){p.vx+=dx*.003;p.vy+=dy*.003}
       ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-      ctx.fillStyle='rgba(46,232,154,.35)';ctx.fill();
+      ctx.fillStyle='rgba(0,201,167,.4)';ctx.fill();
     });
-    pts.forEach((p,i)=>{
-      pts.slice(i+1).forEach(q=>{
-        const dx=p.x-q.x,dy=p.y-q.y,d=Math.sqrt(dx*dx+dy*dy);
-        if(d<100){
-          ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);
-          ctx.strokeStyle=`rgba(46,232,154,${.12*(1-d/100)})`;ctx.lineWidth=.8;ctx.stroke();
-        }
-      });
-    });
+    for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){
+      const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.hypot(dx,dy);
+      if(d<90){ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.strokeStyle=`rgba(0,201,167,${.1*(1-d/90)})`;ctx.lineWidth=.7;ctx.stroke()}
+    }
     requestAnimationFrame(draw);
-  }
+  };
   draw();
 })();
 
-/* ── GLOBE CANVAS ── */
-(function(){
-  const c=document.getElementById('globeCanvas');
-  if(!c)return;
+/* GLOBE */
+(()=>{
+  const c=document.getElementById('gc');if(!c)return;
   const ctx=c.getContext('2d');
-  let W,H,angle=0;
-  function resize(){
-    const rect=c.parentElement.getBoundingClientRect();
-    W=c.width=rect.width;H=c.height=rect.height;
-  }
-  resize();window.addEventListener('resize',resize);
-  const cities=[
-    [20,77],[28,77],[13,77],[19,73],[23,87],[18,74],[26,92],[30,78],
-    [12,80],[17,78],[22,72],[10,76],[25,85],[21,81],[15,75]
-  ];
-  function project(lat,lon,cx,cy,r,rot){
+  let angle=0;
+  const resize=()=>{const r=c.parentElement.getBoundingClientRect();c.width=r.width;c.height=r.height};
+  resize();addEventListener('resize',resize);
+  const cities=[[20,77],[28,77],[13,77],[19,73],[23,87],[18,74],[26,92],[30,78],[12,80],[17,78],[22,72],[10,76],[25,85],[21,81],[15,75]];
+  const proj=(lat,lon,cx,cy,r,rot)=>{
     const la=lat*Math.PI/180,lo=(lon+rot)*Math.PI/180;
-    const x=cx+r*Math.cos(la)*Math.sin(lo);
-    const y=cy-r*Math.sin(la);
-    const z=Math.cos(la)*Math.cos(lo);
-    return{x,y,z};
-  }
-  function draw(){
-    ctx.clearRect(0,0,W,H);
-    const cx=W/2,cy=H/2,r=Math.min(W,H)*.42;
-    angle+=.003;
-    ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);
-    ctx.strokeStyle='rgba(46,232,154,.15)';ctx.lineWidth=1;ctx.stroke();
-    ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);
-    ctx.fillStyle='rgba(10,10,10,.4)';ctx.fill();
+    return{x:cx+r*Math.cos(la)*Math.sin(lo),y:cy-r*Math.sin(la),z:Math.cos(la)*Math.cos(lo)};
+  };
+  const draw=()=>{
+    const W=c.width,H=c.height,cx=W/2,cy=H/2,r=Math.min(W,H)*.42;
+    ctx.clearRect(0,0,W,H);angle+=.003;
+    ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);ctx.fillStyle='rgba(10,10,14,.5)';ctx.fill();
+    ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);ctx.strokeStyle='rgba(0,201,167,.15)';ctx.lineWidth=1;ctx.stroke();
+    const deg=angle*180/Math.PI;
     for(let lat=-80;lat<=80;lat+=20){
-      ctx.beginPath();
-      for(let lon=-180;lon<=180;lon+=2){
-        const p=project(lat,lon,cx,cy,r,angle*180/Math.PI);
-        if(p.z>0){
-          if(lon===-180||lon===(-180+2))ctx.moveTo(p.x,p.y);
-          else ctx.lineTo(p.x,p.y);
-        }
-      }
-      ctx.strokeStyle='rgba(46,232,154,.06)';ctx.lineWidth=.5;ctx.stroke();
+      ctx.beginPath();let mv=true;
+      for(let lon=-180;lon<=180;lon+=3){const p=proj(lat,lon,cx,cy,r,deg);if(p.z>0){mv?ctx.moveTo(p.x,p.y):ctx.lineTo(p.x,p.y);mv=false}else mv=true}
+      ctx.strokeStyle='rgba(0,201,167,.07)';ctx.lineWidth=.5;ctx.stroke();
     }
     for(let lon=-180;lon<=180;lon+=30){
-      ctx.beginPath();
-      for(let lat=-90;lat<=90;lat+=2){
-        const p=project(lat,lon,cx,cy,r,angle*180/Math.PI);
-        if(p.z>0){
-          if(lat===-90||lat===(-90+2))ctx.moveTo(p.x,p.y);
-          else ctx.lineTo(p.x,p.y);
-        }
-      }
-      ctx.strokeStyle='rgba(46,232,154,.06)';ctx.lineWidth=.5;ctx.stroke();
+      ctx.beginPath();let mv=true;
+      for(let lat=-90;lat<=90;lat+=3){const p=proj(lat,lon,cx,cy,r,deg);if(p.z>0){mv?ctx.moveTo(p.x,p.y):ctx.lineTo(p.x,p.y);mv=false}else mv=true}
+      ctx.strokeStyle='rgba(0,201,167,.07)';ctx.lineWidth=.5;ctx.stroke();
     }
-    const degRot=angle*180/Math.PI;
     cities.forEach(([lat,lon],i)=>{
-      const p=project(lat,lon,cx,cy,r,degRot);
-      if(p.z>.1){
-        const pulse=Math.sin(Date.now()*.002+i)*.5+.5;
-        ctx.beginPath();ctx.arc(p.x,p.y,2+pulse*2,0,Math.PI*2);
-        ctx.fillStyle=`rgba(46,232,154,${.15+pulse*.15})`;ctx.fill();
-        ctx.beginPath();ctx.arc(p.x,p.y,2,0,Math.PI*2);
-        ctx.fillStyle='rgba(46,232,154,.9)';ctx.fill();
-      }
+      const p=proj(lat,lon,cx,cy,r,deg);
+      if(p.z>.1){const pulse=Math.sin(Date.now()*.002+i)*.5+.5;
+        ctx.beginPath();ctx.arc(p.x,p.y,3+pulse*2,0,Math.PI*2);ctx.fillStyle=`rgba(0,201,167,${.12+pulse*.12})`;ctx.fill();
+        ctx.beginPath();ctx.arc(p.x,p.y,2,0,Math.PI*2);ctx.fillStyle='rgba(0,201,167,.9)';ctx.fill();}
     });
     requestAnimationFrame(draw);
-  }
+  };
   draw();
 })();
 
-/* ── TICKER DUPLICATE ── */
-const tt=document.getElementById('tickerTrack');
-if(tt)tt.innerHTML+=tt.innerHTML;
+/* TICKER */
+const tk=document.getElementById('tk');if(tk)tk.innerHTML+=tk.innerHTML;
 
-/* ── MARQUEE DUPLICATE ── */
+/* MARQUEES */
 ['m1','m2'].forEach(id=>{const el=document.getElementById(id);if(el)el.innerHTML+=el.innerHTML});
 
-/* ── TABS ── */
-function showTab(id,btn){
-  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById('tab-'+id).classList.add('active');
-  btn.classList.add('active');
+/* TABS */
+function tab(id,btn){
+  document.querySelectorAll('.tp').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.tb').forEach(b=>b.classList.remove('on'));
+  document.getElementById('tp-'+id).classList.add('on');
+  btn.classList.add('on');
 }
 
-/* ── COUNTER ── */
-function counter(el){
-  if(el.dataset.done)return;
-  el.dataset.done=1;
-  const t=+el.dataset.target,suf=el.dataset.suffix||'';
-  let n=0;const step=Math.ceil(t/60);
-  const i=setInterval(()=>{n=Math.min(n+step,t);el.textContent=n+suf;if(n>=t)clearInterval(i)},20);
+/* COUNTERS */
+function count(el){
+  if(el._done)return;el._done=1;
+  const t=+el.dataset.t,s=el.dataset.s||'';
+  let n=0;const step=Math.ceil(t/55);
+  const iv=setInterval(()=>{n=Math.min(n+step,t);el.textContent=n+s;if(n>=t)clearInterval(iv)},18);
 }
 
-/* ── REVEAL ── */
-const obs=new IntersectionObserver(entries=>{
+/* REVEAL */
+const ro=new IntersectionObserver(entries=>{
   entries.forEach(e=>{
     if(e.isIntersecting){
       e.target.classList.add('in');
-      e.target.querySelectorAll('[data-target]').forEach(counter);
-      obs.unobserve(e.target);
+      e.target.querySelectorAll('[data-t]').forEach(count);
+      ro.unobserve(e.target);
     }
   });
 },{threshold:.1});
-document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el=>obs.observe(el));
+document.querySelectorAll('.rv,.rvl,.rvr').forEach(el=>ro.observe(el));
 
-window.addEventListener('load',()=>{
-  setTimeout(()=>document.querySelectorAll('.metric-num[data-target]').forEach(counter),700);
-});
+/* HERO COUNTERS */
+addEventListener('load',()=>setTimeout(()=>document.querySelectorAll('.met-n[data-t]').forEach(count),600));
 
-/* ── TOAST ── */
-function submitForm(){
+/* FORM */
+function sendForm(){
   const t=document.getElementById('toast');
-  t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),3500);
+  t.classList.add('on');
+  setTimeout(()=>t.classList.remove('on'),3500);
 }
-
-/* ── CARD STAGGER ── */
-document.querySelectorAll('.service-card,.sustain-card,.why-item,.e-card,.p-step').forEach((c,i)=>{
-  c.style.transitionDelay=(i%4*.06)+'s';
-});
 </script>
 </body>
 </html>
